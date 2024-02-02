@@ -1,5 +1,5 @@
 - ID: 0
-  Plain: 
+  Plain: >
     "In a system-on-chip (SoC), software will commonly access the peripherals through a memory-mapped register interface. Thus, 
     software can access only certain registers with respect to their privilege level hardcoded in the design. However, through 
     the accessible register interface, malicious software could tamper the hardware data. This threat could allow any adversary 
@@ -7,7 +7,7 @@
   Threat: "Software"
   CWE: 1198
   CAPEC: 223
-  Assertions: 
+  Assertions: |
     "property one1;  
       @(posedge clk_i) (debug_req_i == 1’b0)|-> (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_S) or (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_U) or (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_M);  
     endproperty
