@@ -4,6 +4,7 @@
     software can access only certain registers with respect to their privilege level hardcoded in the design. However, through 
     the accessible register interface, malicious software could tamper the hardware data. This threat could allow any adversary 
     to exploit a weakness enabling them to elevate their privilege and perform an action that they are not supposed to be authorized to perform. "
+  Threat: "Software"
   CWE: 1198
   CAPEC: 223
   Assertions: 
