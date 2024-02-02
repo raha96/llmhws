@@ -15,3 +15,5 @@ Style rules:
 9. Only use ASCII characters. 
 
 Valid "Threat" values: "Software", 
+
+Valid "Severity" values: "Strategic", "Decision", "Typo"
