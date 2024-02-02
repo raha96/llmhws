@@ -4,10 +4,12 @@ The ground rules:
 https://learnxinyminutes.com/docs/yaml/
 
 Style rules: 
-1. Use 4 whitespaces for indentation. 
+1. Use 2 whitespaces for indentation. 
 2. Only represent null as `null`. 
 3. Only represent Boolean values as `true` or `false`. 
-4. Always quote strings. Double quotes are preferred unless you need to use nested quotes.
-5. Avoid escape characters if possible, e.g. by using single quotes inside double quotes.
-6. Avoid quoting anything except strings.
-7. Only use ASCII characters.
+4. Always quote strings, except keys.
+5. Never quote keys. 
+6. Double quotes are preferred unless you need to use nested quotes.
+7. Avoid escape characters if possible, e.g. by using single quotes inside double quotes.
+8. Avoid quoting anything except strings.
+9. Only use ASCII characters.
