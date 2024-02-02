@@ -8,6 +8,22 @@ This repository is meant to host a dataset of potential hardware vulnerabilites 
  - A complete record will include an English description of the vulnerability, CWE classification, SystemVerilog assertions, and the original source code for which the assertions have been written or a link to it, and licensing information.
  - Open source data is preferred to simplify sharing and contribution. If relevant high-quality data of a non-open nature becomes available, we will decide on how to deal with it.
 
+# Understanding `source.yaml`
+
+## Keys
+ - ID (integer, autoincrement): Unique record ID
+ - Plain: Plain (English) language description of the vulnerability. Can be multiline.
+ - Threat: Threat model.
+   - Software: Hardware vulnerabilities that can be exploited by malicious software code. Relevant in the context of SoC security. 
+- CWE (integer): CWE number
+- CAPEC (integer): CAPEC number
+- Assertions: SystemVerilog assertions written to check for the vulnerability. Can be multiline.
+- Design: Name of the design involved.
+  - Ariane: https://github.com/lowRISC/ariane
+- Origin: Dataset of origin, or the source website.
+  - CAD for Security: http://cad4security.org
+- Reference: URL of the reference. 
+
 # Contributors' Guide
 Use YAML: https://learnxinyminutes.com/docs/yaml/
 
