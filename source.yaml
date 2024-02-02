@@ -1,0 +1,28 @@
+- ID: 0
+  Plain: 
+    "In a system-on-chip (SoC), software will commonly access the peripherals through a memory-mapped register interface. Thus, 
+    software can access only certain registers with respect to their privilege level hardcoded in the design. However, through 
+    the accessible register interface, malicious software could tamper the hardware data. This threat could allow any adversary 
+    to exploit a weakness enabling them to elevate their privilege and perform an action that they are not supposed to be authorized to perform. "
+  CWE: 1198
+  CAPEC: 223
+  Assertions: 
+    "property one1;  
+      @(posedge clk_i) (debug_req_i == 1’b0)|-> (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_S) or (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_U) or (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_M);  
+    endproperty
+    property one2;
+      @(posedge clk_i) (debug_req_i == 1’b1)|-> (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_M); //machine mode is low-priviledged  
+    endproperty  
+    property one3;  
+      @(posedge clk_i) (debug_req_i == 1’b1)|-> (ariane.csr_regfile_i.priv_lvl_o != riscv::PRIV_LVL_U);  
+    endproperty  
+    property one4;  
+      @(posedge clk_i) (debug_req_i == 1’b1)|-> (ariane.csr_regfile_i.priv_lvl_o != riscv::PRIV_LVL_S) ;  
+    endproperty  
+    ap_vulnerability11: assert property (one1);
+    ap_vulnerability12: assert property (one2);
+    ap_vulnerability13: assert property (one3);
+    ap_vulnerability14: assert property (one4);"
+  Design: "Ariane"
+  Origin: "CAD for Security"
+  Reference: "http://cad4security.org/index.php/riscv-vulnerability-details/soc-vulnerability-1"
