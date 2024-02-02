@@ -8,6 +8,10 @@ This repository is meant to host a dataset of potential hardware vulnerabilites 
  - A complete record will include an English description of the vulnerability, CWE classification, SystemVerilog assertions, and the original source code for which the assertions have been written or a link to it, and licensing information.
  - Open source data is preferred to simplify sharing and contribution. If relevant high-quality data of a non-open nature becomes available, we will decide on how to deal with it.
 
+# Contributors' Guide
+Use YAML: https://learnxinyminutes.com/docs/yaml/
+All data must be stored in `source.yaml`. Other artifacts are automatically generated from the source. 
+
 # TODO
 
 ## Conceptual
