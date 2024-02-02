@@ -10,7 +10,10 @@ This repository is meant to host a dataset of potential hardware vulnerabilites 
 
 # Contributors' Guide
 Use YAML: https://learnxinyminutes.com/docs/yaml/
+
 All data must be stored in `source.yaml`. Other artifacts are automatically generated from the source. 
+
+Please follow the guidelines in `ContributionRules.md`.
 
 # TODO
 
