@@ -16,4 +16,4 @@ Style rules:
 
 Valid "Threat" values: "Software", 
 
-Valid "Severity" values: "Strategic", "Decision", "Typo"
+Valid "Severity" values: "Strategy", "Decision", "Typo"
