@@ -1,6 +1,6 @@
 # LLM Hardware Security Benchmarking Dataset
 
-*Pre-Alpha Version*
+*Pre-Alpha Version*. All the contents are subject to change. 
 
 This repository is meant to host a dataset of potential hardware vulnerabilites that includes "enough information to enable benchmarking of large language models." The exact meaning of this phrase is up for discussion. This is what we know or have decided on so far: 
  - The source data is maintained in YAML. It's human-readable and machine-parsable, and it can be conveniently version controlled via Git.
@@ -22,7 +22,13 @@ This repository is meant to host a dataset of potential hardware vulnerabilites 
   - Ariane: https://github.com/lowRISC/ariane
 - Origin: Dataset of origin, or the source website.
   - CAD for Security: http://cad4security.org
-- Reference: URL of the reference. 
+- Reference: URL of the reference.
+
+## Severity Classification
+A vulnerability might be "strategy-level", "decision-level" or "typo-level". 
+ - A strategy-level vulnerability is a result of strategic, high-level mistakes and needs fundamental changes to the approach to be fixed, including the design specification. Example: "This database should have been encrypted."
+ - A decision-level vulnerability is caused by mistaken design decisions within a team or subdivision, and can be addressed by the same people. Documentation may need minor revisions to reflect the new design decisions. Example: "There must be some access control between this module and the primary data bus."
+ - A typo-level vulnerability is the result of a mistake or a miscalculation by a single developer and can be fixed by the developer themself when noticed. There is probably no need to update the specification and documentation beyond the comments in the affected files. Example: "This signal should be buffered."
 
 # Contributors' Guide
 Use YAML: https://learnxinyminutes.com/docs/yaml/
