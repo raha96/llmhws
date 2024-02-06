@@ -1,25 +1,26 @@
 - ID: 0
   Plain: >-
-    In a system-on-chip (SoC), software will commonly access the peripherals through a memory-mapped register interface. Thus, 
-    software can access only certain registers with respect to their privilege level hardcoded in the design. However, through 
-    the accessible register interface, malicious software could tamper the hardware data. This threat could allow any adversary 
-    to exploit a weakness enabling them to elevate their privilege and perform an action that they are not supposed to be authorized to perform. 
+    In a system-on-chip (SoC), software will commonly access the peripherals through a memory-mapped register 
+    interface. Thus, software can access only certain registers with respect to their privilege level hardcoded 
+    in the design. However, through the accessible register interface, malicious software could tamper the 
+    hardware data. This threat could allow any adversary to exploit a weakness enabling them to elevate their 
+    privilege and perform an action that they are not supposed to be authorized to perform. 
   Threat: "Software"
   CWE: 1198
-  CAPEC: 223
+  CAPEC: 233
   Assertions: |-
-    property one1;  
-      @(posedge clk_i) (debug_req_i == 1’b0)|-> (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_S) or (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_U) or (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_M);  
+    property one1;
+      @(posedge clk_i) (debug_req_i == 1’b0)|-> (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_S) or (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_U) or (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_M);
     endproperty
     property one2;
-      @(posedge clk_i) (debug_req_i == 1’b1)|-> (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_M); //machine mode is low-priviledged  
-    endproperty  
-    property one3;  
-      @(posedge clk_i) (debug_req_i == 1’b1)|-> (ariane.csr_regfile_i.priv_lvl_o != riscv::PRIV_LVL_U);  
-    endproperty  
-    property one4;  
-      @(posedge clk_i) (debug_req_i == 1’b1)|-> (ariane.csr_regfile_i.priv_lvl_o != riscv::PRIV_LVL_S) ;  
-    endproperty  
+      @(posedge clk_i) (debug_req_i == 1’b1)|-> (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_M); //machine mode is low-priviledged
+    endproperty
+    property one3;
+      @(posedge clk_i) (debug_req_i == 1’b1)|-> (ariane.csr_regfile_i.priv_lvl_o != riscv::PRIV_LVL_U);
+    endproperty
+    property one4;
+      @(posedge clk_i) (debug_req_i == 1’b1)|-> (ariane.csr_regfile_i.priv_lvl_o != riscv::PRIV_LVL_S);
+    endproperty
     ap_vulnerability11: assert property (one1);
     ap_vulnerability12: assert property (one2);
     ap_vulnerability13: assert property (one3);
@@ -27,3 +28,124 @@
   Design: "Ariane"
   Origin: "CAD for Security"
   Reference: "http://cad4security.org/index.php/riscv-vulnerability-details/soc-vulnerability-1"
+
+- ID: 1
+  Plain: >-
+    In a system-on-chip (SoC), software will commonly access the peripherals through a memory-mapped register 
+    interface. Thus, software can access only certain registers with respect to their privilege level hardcoded 
+    in the design. However, through the accessible register interface, malicious software could tamper the 
+    hardware data. This threat could allow any adversary to exploit a weakness enabling them to elevate their 
+    privilege and perform an action that they are not supposed to be authorized to perform. 
+  Threat: "Software"
+  CWE: 266
+  CAPEC: 233
+  Assertions: |-
+    property one1;
+      @(posedge clk_i) (debug_req_i == 1’b0)|-> (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_S) or (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_U) or (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_M);
+    endproperty
+    property one2;
+      @(posedge clk_i) (debug_req_i == 1’b1)|-> (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_M); //machine mode is low-priviledged
+    endproperty
+    property one3;
+      @(posedge clk_i) (debug_req_i == 1’b1)|-> (ariane.csr_regfile_i.priv_lvl_o != riscv::PRIV_LVL_U);
+    endproperty
+    property one4;
+      @(posedge clk_i) (debug_req_i == 1’b1)|-> (ariane.csr_regfile_i.priv_lvl_o != riscv::PRIV_LVL_S);
+    endproperty
+    ap_vulnerability11: assert property (one1);
+    ap_vulnerability12: assert property (one2);
+    ap_vulnerability13: assert property (one3);
+    ap_vulnerability14: assert property (one4);
+  Design: "Ariane"
+  Origin: "CAD for Security"
+  Reference: "http://cad4security.org/index.php/riscv-vulnerability-details/soc-vulnerability-2"
+
+- ID: 2
+  Plain: >-
+    In a system-on-chip (SoC), software will commonly access the peripherals through a memory-mapped register 
+    interface. Thus, software can access only certain registers with respect to their privilege level hardcoded 
+    in the design. However, through the accessible register interface, malicious software could tamper the 
+    hardware data. This threat could allow any adversary to exploit a weakness enabling them to elevate their 
+    privilege and perform an action that they are not supposed to be authorized to perform. 
+  Threat: "Software"
+  CWE: 1198
+  CAPEC: 233
+  Assertions: |-
+    property one1;
+      @(posedge clk_i) (debug_req_i == 1’b0)|-> (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_S) or (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_U) or (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_M);
+    endproperty
+    property one2;
+      @(posedge clk_i) (debug_req_i == 1’b1)|-> (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_M); //machine mode is low-priviledged
+    endproperty
+    property one3;
+      @(posedge clk_i) (debug_req_i == 1’b1)|-> (ariane.csr_regfile_i.priv_lvl_o != riscv::PRIV_LVL_U);
+    endproperty
+    property one4;
+      @(posedge clk_i) (debug_req_i == 1’b1)|-> (ariane.csr_regfile_i.priv_lvl_o != riscv::PRIV_LVL_S);
+    endproperty
+    ap_vulnerability11: assert property (one1);
+    ap_vulnerability12: assert property (one2);
+    ap_vulnerability13: assert property (one3);
+    ap_vulnerability14: assert property (one4);
+  Design: "Ariane"
+  Origin: "CAD for Security"
+  Reference: "http://cad4security.org/index.php/riscv-vulnerability-details/soc-vulnerability-3"
+
+- ID: 3
+  Plain: >-
+    In a system-on-chip (SoC), the software will commonly access the peripherals through a memory-mapped register 
+    interface. Thus, the software can access only certain registers with respect to their privilege level 
+    hardcoded in the design. However, through the accessible register interface, malicious software could tamper 
+    with the hardware data. During the execution of an instruction, the privilege level should not be altered. 
+    Changing the privilege level during this can lead to access control violations and possible integrity loss. 
+  Threat: "Software"
+  CWE: 1272
+  CAPEC: 233
+  Assertions: |-
+    property priv_viol;  
+      @(posedge clk_i)  disable iff (!rst_ni)  ( ariane.csr_regfile_i.privilege_violation) |-> (~ariane.csr_regfile_i.csr_we  && ~ariane.csr_regfile_i.csr_read );
+  Design: "Ariane"
+  Origin: "CAD for Security"
+  Reference: "http://cad4security.org/index.php/riscv-vulnerability-details/soc-vulnerability-4"
+
+- ID: 4
+  Plain: >-
+    In a system-on-chip (SoC), the software will commonly access the peripherals through a memory-mapped register 
+    interface. Thus, the software can access only certain registers with respect to their privilege level 
+    hardcoded in the design. However, through the accessible register interface, malicious software could tamper 
+    with the hardware data. The memory management unit (MMU) determines the memory page access permission for 
+    different privilege levels. This vulnerability allows any attacker to access supervisor or machine-level 
+    memory pages from user-level privilege mode without generating any data access error. 
+  Threat: "Software"
+  CWE: 1262
+  CAPEC: 233
+  Assertions: |-
+    property mmu;
+      @(posedge clk_i) disable iff (!rst_ni) (ariane.ex_stage_i.lsu_i.i_mmu.icache_areq_i.fetch_req && ((ariane.ex_stage_i.lsu_i.i_mmu.priv_lvl_i == riscv::PRIV_LVL_U) && ~ariane.ex_stage_i.lsu_i.i_mmu.itlb_content.u)) |-> (ariane.ex_stage_i.lsu_i.i_mmu.iaccess_err == 1);
+    endproperty
+    ap_vulnerability123: assert property (mmu);
+  Design: "Ariane"
+  Origin: "CAD for Security"
+  Reference: "http://cad4security.org/index.php/riscv-vulnerability-details/soc-vulnerability-5"
+
+- ID: 5
+  Plain: >-
+    In a system-on-chip (SoC), the software will commonly access the peripherals through a memory-mapped register 
+    interface. Thus, the software can access only certain registers with respect to their privilege level 
+    hardcoded in the design. However, through the accessible register interface, malicious software could tamper 
+    with the hardware data. The physical memory protection (PMP) unit takes care of the address translation for 
+    the physical memory locations inside the processor. If there is any mismatch during this process, no physical 
+    memory access is given to the lower privilege levels. However, this vulnerability can enable an attacker to 
+    gain the memory access even with lower privilege levels (S mode and U mode). 
+  Threat: "Software"
+  CWE: 1262
+  CAPEC: 233
+  Assertions: |-
+    property pmp;
+      (posedge clk_i) disable iff (!rst_ni) (ariane.ex_stage_i.lsu_i.i_mmu.i_pmp_if.priv_lvl_i == riscv::PRIV_LVL_S) |-> (ariane.ex_stage_i.lsu_i.i_mmu.i_pmp_if.allow_o !=1);
+    endproperty
+    ap_vulnerability126: assert property (pmp);
+  Design: "Ariane"
+  Origin: "CAD for Security"
+  Reference: "http://cad4security.org/index.php/riscv-vulnerability-details/soc-vulnerability-6"
+
