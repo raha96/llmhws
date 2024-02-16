@@ -149,3 +149,85 @@
   Origin: "CAD for Security"
   Reference: "http://cad4security.org/index.php/riscv-vulnerability-details/soc-vulnerability-6"
 
+- ID: 50
+  Threat: Insufficient Granularity of Access Control
+  Plain: >-
+    The product implements access controls via a policy or other feature with the intention to disable or restrict accesses (reads and/or writes) to assets in a system from untrusted agents. However, implemented access controls lack required granularity, which renders the control policy too broad because it allows accesses from unauthorized agents to the security-sensitive assets. 
+    Integrated circuits and hardware engines can expose accesses to assets (device configuration, keys, etc.) to trusted firmware or a software module (commonly set by BIOS/bootloader). This access is typically access-controlled. Upon a power reset, the hardware or system usually starts with default values in registers, and the trusted firmware (Boot firmware) configures the necessary access-control protection.
+    A common weakness that can exist in such protection schemes is that access controls or policies are not granular enough. This condition allows agents beyond trusted agents to access assets and could lead to a loss of functionality or the ability to set up the device securely. This further results in security risks from leaked, sensitive, key material to modification of device configuration.  
+  CWE: 1220
+  Language: Not Language-Specific
+  Technologies: Not Technology-Specific
+  CAPEC: 1-180 
+  Attack Pattern Name: Accessing Functionality Not Properly Constrained by ACLs, Exploiting Incorrectly Configured Access Control Security Levels
+  Assertions: 
+  Design: 
+  Origin: "CWE MITRE"
+  Reference: "https://cwe.mitre.org/data/definitions/1220.html"
+  Observed Examples: CVE-2022-24985, CVE-2021-36934
+   
+- ID: 52
+  Threat: Incorrect Register Defaults or Module Parameters
+  Plain: >-
+    Hardware description language code incorrectly defines register defaults or hardware Intellectual Property (IP) parameters to insecure values.
+    Integrated circuits and hardware IP software programmable controls and settings are commonly stored in register circuits. These register contents have to be initialized at hardware reset to defined default values that are hard coded in the hardware description language (HDL) code of the hardware unit. Hardware descriptive languages also support definition of parameter variables, which can be defined in code during instantiation of the hardware IP module. Such parameters are generally used to configure a specific instance of a hardware IP in the design.
+    The system security settings of a hardware design can be affected by incorrectly defined default values or IP parameters. The hardware IP would be in an insecure state at power reset, and this can be exposed or exploited by untrusted software running on the system. Both register defaults and parameters are hardcoded values, which cannot be changed using software or firmware patches but must be changed in hardware silicon. Thus, such security issues are considerably more difficult to address later in the lifecycle. Hardware designs can have a large number of such parameters and register defaults settings, and it is important to have design tool support to check these settings in an automated way and be able to identify which settings are security sensitive.  
+  CWE: 1221 
+  Language: Verilog (Undetermined Prevalence), VHDL (Undetermined Prevalence)
+  Technologies: Not Technology-Specific
+  CAPEC: CAPEC-166 
+  Attack Pattern Name: Force the System to Reset Values
+  Assertions: |-  
+  Design: 
+  Origin: "CWE MITRE"
+  Reference: "https://cwe.mitre.org/data/definitions/1221.html"
+  Observed Examples: 
+  
+- ID: 53
+  Threat: Internal Asset Exposed to Unsafe Debug Access Level or State
+  Plain: >-
+    The product uses physical debug or test interfaces with support for multiple access levels, but it assigns the wrong debug access level to an internal asset, providing unintended access to the asset from untrusted debug agents.
+    Debug authorization can have multiple levels of access, defined such that different system internal assets are accessible based on the current authorized debug level. Other than debugger authentication (e.g., using passwords or challenges), the authorization can also be based on the system state or boot stage. For example, full system debug access might only be allowed early in boot after a system reset to ensure that previous session data is not accessible to the authenticated debugger.
+    If this protection mechanism does not ensure that internal assets have the correct debug access level during each boot stage or change in system state, an attacker could obtain sensitive information from the internal asset using a debugger.  
+  CWE: 1244  
+  Language: Not Language-Specific
+  Technologies: Not Technology-Specific
+  CAPEC: CAPEC-114 
+  Attack Pattern Name: Authentication Abuse
+  Assertions: |-  
+  Design:  
+  Origin: "CWE MITRE" 
+  Reference: "https://cwe.mitre.org/data/definitions/1244.html"
+  Observed Examples: CVE-2019-18827 After ROM code execution, JTAG access is disabled. But before the ROM code is executed, JTAG access is possible, allowing a user full system access. This allows a user to modify the boot flow and successfully bypass the secure-boot process. 
+  
+- ID: 54
+  Threat: Exposure of Sensitive System Information Due to Uncleared Debug Information
+  Plain: >-
+    The hardware does not fully clear security-sensitive values, such as keys and intermediate values in cryptographic operations, when debug mode is entered.
+    Security sensitive values, keys, intermediate steps of cryptographic operations, etc. are stored in temporary registers in the hardware. If these values are not cleared when debug mode is entered they may be accessed by a debugger allowing sensitive information to be accessible by untrusted parties.   
+  CWE: 1258 
+  Language: Not Language-Specific
+  Technologies: Not Technology-Specific
+  CAPEC: CAPEC-150, CAPEC-204, CAPEC-37, CAPEC-545 
+  Attack Pattern Name: Collect Data from Common Resource Locations, Lifting Sensitive Data Embedded in Cache, Retrieve Embedded Sensitive Data, Pull Data from System Resources
+  Assertions: |-  
+  Design:  
+  Origin: "CWE MITRE" 
+  Reference: "https://cwe.mitre.org/data/definitions/1258.html"
+  Observed Examples: CVE-2021-33080 Uncleared debug information in memory accelerator for SSD product exposes sensitive system information, CVE-2022-31162 Rust library leaks Oauth client details in application debug logs 
+   
+- ID: 55
+  Threat: Improper Restriction of Security Token Assignment
+  Plain: >-
+    The System-On-A-Chip (SoC) implements a Security Token mechanism to differentiate what actions are allowed or disallowed when a transaction originates from an entity. However, the Security Tokens are improperly protected.
+    Systems-On-A-Chip (Integrated circuits and hardware engines) implement Security Tokens to differentiate and identify which actions originated from which agent. These actions may be one of the directives 'read', 'write', 'program', 'reset', 'fetch', 'compute', etc. Security Tokens are assigned to every agent in the System that is capable of generating an action or receiving an action from another agent. Multiple Security Tokens may be assigned to an agent and may be unique based on the agent's trust level or allowed privileges. Since the Security Tokens are integral for the maintenance of security in an SoC, they need to be protected properly. A common weakness afflicting Security Tokens is improperly restricting the assignment to trusted components. Consequently, an improperly protected Security Token may be able to be programmed by a malicious agent (i.e., the Security Token is mutable) to spoof the action as if it originated from a trusted agent. 
+  CWE: 1259   
+  Language: Not Language-Specific
+  Technologies: Not Technology-Specific
+  CAPEC: CAPEC-121, CAPEC-681
+  Attack Pattern Name: Exploit Non-Production Interfaces, Exploitation of Improperly Controlled Hardware Security Identifiers
+  Assertions: |-  
+  Design: 
+  Origin: "CWE MITRE"
+  Reference: "https://cwe.mitre.org/data/definitions/1259.html"
+  Observed Examples:   
