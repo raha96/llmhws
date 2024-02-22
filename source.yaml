@@ -149,6 +149,104 @@
   Origin: "CAD for Security"
   Reference: "http://cad4security.org/index.php/riscv-vulnerability-details/soc-vulnerability-6"
 
+- ID: 6
+  Plain: >-
+    Encryption key should not be observable from test and debug ports.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold SPV"
+  Assertions: |-
+    check_spv -create -from {key} -to {test_so} -name "observability_of_key"
+  Design: "Trust-Hub GEM031"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/GEM031.zip"
+
+- ID: 7
+  Plain: >-
+    FSM State flip-flop should not be controllable and observable from the additional test and debug ports. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold SPV"
+  Assertions: |-
+    check_spv -create -from {test_si} -to {next_FSM} -name "controllability_of_state_flip_flop"
+    check_spv -create -from {next_FSM} -to {test_so} -name "observability_of_state_flip_flop"
+  Design: "Trust-Hub GEM032"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/GEM032.zip"
+
+- ID: 8
+  Plain: >-
+    For a certain FSM state encoding scheme, the Fault Injection Feasibility (FIF) metric should not have the value 1.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property FI_vulnerability;
+      @(posedge clk) (!(aes_binary.FSM==FINAL_ROUND) && !($past(aes_binary.FSM)==FINAL_ROUND)) |-> !((!(aes_binary.FSM[0] ^ FINAL_ROUND[0]) | !($past(aes_binary.FSM[0]) ^ FINAL_ROUND[0]) ) && (!(aes_binary.FSM[1] ^ FINAL_ROUND[1]) | !($past(aes_binary.FSM[1]) ^ FINAL_ROUND[1]) ) && (!(aes_binary.FSM[2] ^ FINAL_ROUND[2]) | !($past(aes_binary.FSM[2]) ^ FINAL_ROUND[2])));
+    endproperty
+    checkFI_vulnerability: assert property(FI_vulnerability);
+  Design: "Trust-Hub GEM051"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/GEM051.zip"
+
+- ID: 9
+  Plain: >-
+    To resist fault injection vulnerability, FSM encoding of encryption algorithm should be implemented in such a way that an FSM state cannot be accessed from a don’t care state. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property finalRoundAccessFromDontCare;
+      @(posedge clk) (aes_binary.FSM==FINAL_ROUND) |->
+        $past(aes_binary.FSM==3'b111) |
+        $past(aes_binary.FSM==3'b001) |
+        $past(aes_binary.FSM==3'b101);
+    endproperty
+    checkFinalRoundAccessFromDontCare: assert property(finalRoundAccessFromDontCare);
+  Design: "Trust-Hub GEM061"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/GEM061.zip"
+
+- ID: 10
+  Plain: >-
+    Final_round of AES should only be accessed from the do_round and should not be accessed from any don’t care states.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property accessToFinalRound;
+      @(posedge clk) (aes_binary.FSM==FINAL_ROUND) |->
+      $past(aes_binary.FSM==DO_ROUND) ||
+      $past(aes_binary.FSM==FINAL_ROUND);
+    endproperty
+    checkAccessToFinalRound: assert property(accessToFinalRound);
+  Design: "Trust-Hub GEM062"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/GEM062.zip"
+
+- ID: 11
+  Plain: >-
+    RESULT state should only be accessed from SQR state and should not be accessed from any don’t care states. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property dontCareState;
+      @(posedge clk) (RSA_binary.FSM==RESULT) |->
+      $past(RSA_binary.FSM==RESULT) ||
+      $past(RSA_binary.FSM==SQR);
+    endproperty
+    checkAccessFromDontCareState: assert property(dontCareState);
+  Design: "Trust-Hub GEM063"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/GEM063.zip"
+
 - ID: 50
   Threat: Insufficient Granularity of Access Control
   Plain: >-
