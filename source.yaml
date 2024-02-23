@@ -247,6 +247,759 @@
   Origin: "Trust-Hub"
   Reference: "https://trust-hub.org/downloads/resource/data/property-db/GEM063.zip"
 
+- ID: 12
+  Plain: >-
+    A reset signal should be enabled for the scan flip-flops whenever there is a switch from the functional mode to the test mode.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property testmode;
+      @(posedge clk) (RSA_binary.test_se==1) ##1 (RSA_binary.test_se==0)| -> (RSA_binary.RESET==1);
+    endproperty
+    checktestmode: assert property(testmode);
+  Design: "Trust-Hub GTD022"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/GTD022.zip"
+
+- ID: 13
+  Plain: >-
+    Timing violation, computational, or execution fault can result in erroneous state transition of FSM, which can be exploited to perform 
+    fault injection attack. When state transition takes place between two consecutive unprotected states, then hamming distance between 
+    the encoded states should be 1.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property one;
+      @(posedge i_clk) $countones (door_lock_FSM.INITIAL_SET ^ door_lock_FSM.VERIFY) == 1;
+    endproperty
+    property two;
+      @(posedge i_clk) $countones (door_lock_FSM.VERIFY ^ door_lock_FSM.VERIFY_SUCCESS) == 1;
+    endproperty
+    property three;
+      @(posedge i_clk) $countones (door_lock_FSM.VERIFY ^ door_lock_FSM.VERIFY_FAIL) == 1;
+    endproperty
+    property four;
+      @(posedge i_clk) $countones (door_lock_FSM.VERIFY ^ door_lock_FSM.SET) == 1;
+    endproperty
+    property five;
+      @(posedge i_clk) $countones (door_lock_FSM.VERIFY_SUCCESS ^ door_lock_FSM.SET) == 1;
+    endproperty
+    property six;
+      @(posedge i_clk) $countones (door_lock_FSM.VERIFY_FAIL ^ door_lock_FSM.SET) == 1;
+    endproperty
+    ap_door_lock_vulnerability1: assert property (one)
+    ap_door_lock_vulnerability2: assert property (two)
+    ap_door_lock_vulnerability3: assert property (three)
+    ap_door_lock_vulnerability4: assert property (four)
+    ap_door_lock_vulnerability5: assert property (five)
+    ap_door_lock_vulnerability6: assert property (six)
+  Design: "Trust-Hub RCD011"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/RCD011.zip"
+
+- ID: 14
+  Plain: >-
+    All unused states of an FSM should be handled through default statement which ensures the system to be in secure state.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property unused_state_vulnerability1;
+      @(posedge clk) disable iff (rst_n) (user_input == 3'b111) || (user_input == 3'b110) |=> (fsm_1.state == 2'h01);
+    endproperty
+    ap_unused_state_vulnerability1: assert property (unused_state_vulnerability1)
+  Design: "Trust-Hub RCD012"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/RCD012.zip"
+
+- ID: 15
+  Plain: >-
+    Control and status register’s contents should be copied to/from any general-purpose registers based on the access 
+    type (read-only, write-only, read-write etc.) of each bit of the control and status register.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold CSR"
+  Assertions: |-
+    Access description for JasperGold CSR
+  Design: "Trust-Hub RCD021"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/RCD021.zip"
+
+- ID: 16
+  Plain: >-
+    Privilege level of the load and store module should not be changed if the previous privilege level of the host 
+    processor was set higher than current privilege level.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property vul_PMU_priv_level_1;
+      @(posedge clk_i) csr_regfile_i.mprv == 1 |-> csr_regfile_i.ld_st_priv_lvl_o == csr_regfile_i.mstatus_q.mpp;
+    endproperty
+    property vul_PMU_priv_level_2;
+      @(posedge clk_i) csr_regfile_i.mprv == 0 |-> csr_regfile_i.ld_st_priv_lvl_o == csr_regfile_i.priv_lvl_o;
+    endproperty
+    ap_vul_PMU_priv_level_1: assert property (vul_PMU_priv_level_1);
+    ap_vul_PMU_priv_level_2: assert property (vul_PMU_priv_level_2);
+  Design: "Trust-Hub RCD032"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/RCD032.zip"
+
+- ID: 17
+  Plain: >-
+    Load-Store Unit (LSU) should not accept access requests if more outstanding transactions are requested than its 
+    depth. (The depth of an LSU is the capability of handling the number of transactions that are in queue to be executed). 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property p_no_transaction_count_overflow_0;
+      @(posedge clk_i) disable iff (!rst_ni) (1'b1) |-> (load_store_unit_i.cnt_q <= load_store_unit_i.DEPTH);
+    endproperty
+    property p_no_transaction_count_overflow_1;
+      @(posedge clk_i) disable iff (!rst_ni) (load_store_unit_i.data_req_ex_i && load_store_unit_i.cnt_q > load_store_unit_i.DEPTH) |-> (load_store_unit_i.trans_valid == 1'b1);
+    endproperty
+    a_no_transaction_count_overflow_0: assert property(p_no_transaction_count_overflow_0);
+    a_no_transaction_count_overflow_1: cover property(p_no_transaction_count_overflow_1);
+  Design: "Trust-Hub RCD041"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/RCD041.zip"
+
+- ID: 18
+  Plain: >-
+    The cipher text ready signal should be low when encryption key is loaded to an AES. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property reset_key_load1_done0;
+    @(posedge clk)
+      disable iff (rst) (ld == 1'b1) |-> (done == 1'b0);
+    endproperty
+    property reset_key_load1_done;
+      if ((rst == 1'b0) && (ld == 1'b1 ) && (done == 1'b1)) key != text_out;
+    endproperty
+    ap_reset_LD1_D0: assert property (reset_key_load1_done0);
+    ap_reset_LD1_DN: assert property (reset_key_load1_done);
+  Design: "Trust-Hub REM011"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM011.zip"
+
+- ID: 19
+  Plain: >-
+    AES key should not be shared with other modules. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property AES_key_sharing;
+      @(posedge clk) disable iff (rst) (v_top.AES.key != v_top.TSC.key);
+    endproperty
+    ap_AES_key_sharing: assert property (AES_key_sharing);
+  Design: "Trust-Hub REM012"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM012.zip"
+
+- ID: 20
+  Plain: >-
+    Control registers should not be observable from the output signals. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold SPV"
+  Assertions: |-
+    check_spv -create -from next_FSM -to_all {data_stable key_ready finished round_type_sel}
+  Design: "Trust-Hub REM013"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM013.zip"
+
+- ID: 21
+  Plain: >-
+    The cipher-text ready signal should be only asserted from the final round state. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property finished signal;
+      @(posedge clk) (finished==1'b1) |-> aes_binary.FSM==aes_binary.FINAL_ROUND;
+    endproperty
+    checkFinishedSignal: assert property(finishedSignal);
+  Design: "Trust-Hub REM021"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM021.zip"
+
+- ID: 22
+  Plain: >-
+    ‘Ready’ signal should be asserted after certain cycles of the INITIAL_ROUND.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property constantCycleOperation;
+      @(posedge clk) $rose(finished) |-> $past(aes_binary.FSM==INITIAL_ROUND, 10);
+    endproperty
+    checkConstCycle: assert property(constantCycleOperation);
+  Design: "Trust-Hub REM022"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM022.zip"
+
+- ID: 23
+  Plain: >-
+    DO_ROUND must occur before the FINAL_ROUND. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property doRoundBeforeFinalRound;
+      @(posedge clk) ((aes_binary.FSM==WAIT_DATA) ##1(aes_binary.FSM==INITIAL_ROUND)) ##1 (!((aes_binary.FSM==DO_ROUND) & !(aes_binary.FSM==FINAL_ROUND)))[*1:$] |-> !(aes_binary.FSM==FINAL_ROUND);
+    endproperty
+    checkDoRoundBeforeFinalRound: assert property(doRoundBeforeFinalRound);
+  Design: "Trust-Hub REM023"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM023.zip"
+
+- ID: 24
+  Plain: >-
+    FINAL_ROUND should only be accessed from DO_ROUND. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property accessToFinalRound;
+      @(posedge clk) (aes_binary.FSM==FINAL_ROUND) |-> $past(aes_binary.FSM==DO_ROUND) || $past(aes_binary.FSM==FINAL_ROUND);
+    endproperty
+    checkAccessToFinalRound: assert property(accessToFinalRound);
+  Design: "Trust-Hub REM024"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM024.zip"
+
+- ID: 25
+  Plain: >-
+    AES Key should not flow to the ciphertext when the plain text matches with a specific value. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold SPV"
+  Assertions: |-
+    check_spv -create -from {aes.slv_reg7} -to {aes.AES_pipe.cipher_text} -name "key_to_ciphertext"
+    check_spv -create -from {aes.slv_reg7} -to {aes.AES_pipe.cipher_text} -from_precond {aes.plain_text[7:0] == 8'hAC || aes.plain_text[15:0] == 16'h1256} -name "key_to_ciphertext_with_precond"
+  Design: "Trust-Hub REM025"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM025.zip"
+
+- ID: 26
+  Plain: >-
+    To avoid side-channel attacks, intermediate variables should not be relevant with a portion (# = k) of key bits (e.g., 1 < k ≤ 32) and plaintext bits (# = m, m > 0)
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold SPV"
+  Assertions: |-
+    assume {clk_count == 0 |-> Drdy == 0}
+    assume {clk_count == 1 |-> Drdy == 1}
+    assume {clk_count>1 |-> Drdy == 0}
+    assume {clk_count == 0 |-> Krdy == 1}
+    assume {clk_count == 1 |-> Krdy == 0}
+    assume {clk_count>1 |-> Krdy == 0}
+    assume {clk_count > 0 |-> EN == 1}
+    check_spv -create -from {Krg[32]}   -to {Drg[0]} -to_precond {clk_count == 3}
+    # For i in range [0, 127]
+    check_spv -create -from {Krg[i]} -to {Drg[0]} -to_precond {clk_count == 3} 
+    check_spv -create -from {Din[i]} -to {Drg[0]} -to_precond {clk_count == 3}
+  Design: "Trust-Hub REM028"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM028.zip"
+
+- ID: 27
+  Plain: >-
+    `Finished` signal should be high at `RESULT` state.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property finishedSignal;
+      @(posedge clk) (finished==1'b1) |-> (RSA_binary.FSM==RESULT);
+    endproperty
+    finishedSignalProperty: assert property(finishedSignal);
+  Design: "Trust-Hub REM031"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM031.zip"
+
+- ID: 28
+  Plain: >-
+    Control registers should not be observable from output signal.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold SPV"
+  Assertions: |-
+    check_spv -create -from next_FSM -to_all {start finished}
+  Design: "Trust-Hub REM032"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM032.zip"
+
+- ID: 29
+  Plain: >-
+    `RESULT` state can only be accessed from `SQR` state. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property accessToResult;
+      @(posedge clk) (RSA_binary.FSM==RESULT) |-> $past(RSA_binary.FSM==RESULT) || $past(RSA_binary.FSM==SQR);
+    endproperty
+    authorizedAccessToResult: assert property(accessToResult);
+  Design: "Trust-Hub REM041"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM041.zip"
+
+- ID: 30
+  Plain: >-
+    `MULT` and `SQR` both states must occur before reaching the `RESULT` state. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property multSqrThenResult;
+      @(posedge clk) (RSA_binary.FSM==RESULT) |-> $past(RSA_binary.FSM==SQR,1) && $past(RSA_binary.FSM==MULT,2);
+    endproperty
+    checkMultSqrThenResult: assert property(multSqrThenResult);
+  Design: "Trust-Hub REM042"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM042.zip"
+
+- ID: 31
+  Plain: >-
+    `finished/ready` signal should be high after certain clock cycles of the initial state.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property constant_9_Cycle;
+      @(posedge clk) (finished==1'b1) |-> $past(RSA_binary.FSM==INIT,9);
+    endproperty
+    checkConstant_9_Cycle: assert property(constant_9_Cycle);
+  Design: "Trust-Hub REM043"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM043.zip"
+
+- ID: 32
+  Plain: >-
+    `valid` signal should be high only at the final round.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property validSignal;
+      @(posedge clk_i) (sha256_control.data_valid_o==1'b1) |-> (sha256_control.hash_control_st_reg==st_sha_data_valid);
+    endproperty
+    checkValidSiganlAtValidState: assert property(validSignal);
+  Design: "Trust-Hub REM051"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM051.zip"
+
+- ID: 33
+  Plain: >-
+    The number of cycles between the initial and final round of the encryption operation should always be constant. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property constant_80_Cycle;
+      @(posedge clk) disable iff (!reset_n) (sha512_core.sha512_ctrl_new == sha512_core.CTRL_IDLE) ##80 (sha512_core.sha512_ctrl_new == sha512_core.CTRL_DONE);
+    endproperty
+    checkConstant_80_Cycle: assert property(constant_80_Cycle);
+  Design: "Trust-Hub REM052"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM052.zip"
+
+- ID: 34
+  Plain: >-
+    Random number generators should create strong primes so that modulus p and q are not close to each other or should not be easily 
+    factorizable. When the primes are generated using random number generators, it should be checked that they are not factorizable. 
+    The hamming distance between the modulus should be at least 50%.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property one;
+      @(posedge clk) disable iff (~reset) $countones(RSA.number_q^RSA.number_p) >= 4;
+    endproperty
+    modulus_p_and_q: assert property (one);
+  Design: "Trust-Hub REM061"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM061.zip"
+
+- ID: 35
+  Plain: >-
+    When the primes are generated using random number generators, it should be checked that the modulus are not generated from first entropy.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property one;
+      @(posedge clk) disable iff (~reset) (reset==1) ##1 (RSA.rand_number != RSA.number_p);
+    endproperty
+    property two;
+      @(posedge clk) disable iff (~reset) (reset==1) ##1 (RSA.rand_number != RSA.number_q);
+    endproperty
+    first_iteration_p: assert property (one);
+    first_iteration_q: assert property (two);
+  Design: "Trust-Hub REM071"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM071.zip"
+
+- ID: 36
+  Plain: >-
+    If private exponent (d) is lower than a threshold t1, the public exponent (e) should not be higher than a threshold t2. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property one;
+      @(posedge clk) if (!reset && RSA.reg_d <= 10) RSA.reg_e <= 100;
+    endproperty
+    low_private_exponent: assert property (one);
+  Design: "Trust-Hub REM081"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM081.zip"
+
+- ID: 37
+  Plain: >-
+    If the output of an IP behaves differently or sends different responses under different circumstances in a way 
+    that is observable to an unauthorized actor, it can expose security-relevant information about the state of 
+    the product, such as whether a particular operation was successful or not. The discrepancy of design behavior 
+    should not be observable for different inputs.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: ""
+  Assertions: |-
+    cover {(ld==1) ##1 (key_r == text_in_r) ## [1:$] done == 1}
+    cover {(ld==1) ##1 (key_r != text_in_r) ## [1:$] done == 1}
+  Design: "Trust-Hub REM091"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM091.zip"
+
+- ID: 38
+  Plain: >-
+    All masters and slave IPs integrated on the bus must follow a certain sequence of operations 
+    according to the bus protocol to avoid desynchronization between data and permission checking 
+    logic.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    // Without the assertion of cycle input (cyc_i) signal, no slave can be selected.
+    property p_never_invalid_request;
+      @(posedge clk_i) disable iff(rst_i) not(!cyc_i && stb_i);
+    endproperty
+    // An initial state when no slave or master is ready yet
+    sequence s_init_state;
+      (!cyc_i && !stb_i);
+    endsequence
+    // A state when a master is ready, but slave is not selected yet
+    sequence s_mst_ready_state;
+      (cyc_i && !stb_i);
+    endsequence
+    // A state when a master and slave are ready
+    sequence s_slv_ready_state;
+      (cyc_i && stb_i);
+    endsequence
+    // A state transition from initial state to any other state(master ready, slave ready or initial state)
+    property p_init_next_state;
+      @(posedge clk_i) disable iff(rst_i) s_init_state |=> (s_init_state or s_mst_ready_state or s_slv_ready_state);
+    endproperty
+    // A state transition from master ready state to other states (master ready, slave ready or initial state)
+    property p_mst_ready_next_state;
+      @(posedge clk_i) disable iff(rst_i) s_mst_ready_state |=> (s_init_state or s_mst_ready_state or s_slv_ready_state);
+    endproperty
+    // A state transition from slave ready state to other states (master ready, slave ready or initial state) when ack_o signal is asserted
+    property p_slv_ready_next_state;
+      @(posedge clk_i) disable iff(rst_i) (s_slv_ready_state and ack_o) |=> (s_init_state or s_mst_ready_state or s_slv_ready_state);
+    endproperty
+    // No state transition takes place from slave ready state to other states(master ready or initial state) when ack_o signal is not asserted
+    property p_slv_ready_hold_state;
+      @(posedge clk_i) disable iff(rst_i) (s_slv_ready_state and !ack_o) |=> s_slv_ready_state;
+    endproperty
+    // If the current slave is in ready state, input from the master should not change until acknowledge is asserted
+    property p_hold_bus (bus);
+      @(posedge clk_i) disable iff(rst_i) (s_slv_ready_state) |=> ((bus == $past(bus)) && !ack_o) or ((bus != $past(bus)) && ack_o);
+    endproperty
+    // SLAVE interfaces MUST be designed so that the [ACK_O], [ERR_O], and [RTY_O] signals are asserted and negated in response to the assertion and negation of [STB_I]
+    property p_slv_ready_hold_state1;
+      @(posedge clk_i) disable iff(rst_i) (ack_o) and !stb_i |=> !ack_o;
+    endproperty
+    ASM_never_invalid_request : assert property(p_never_invalid_request);
+    ASM_init_next_state : assert property(p_init_next_state);
+    ASM_slv_ready_hold_state1 : assert property(p_slv_ready_hold_state1);
+    ASM_mst_ready_next_state : assert property(p_mst_ready_next_state);
+    ASM_slv_ready_next_state : assert property(p_slv_ready_next_state);
+    ASM_slv_ready_hold_state : assert property(p_slv_ready_hold_state);
+    ASM_hold_adr : assert property(p_hold_bus(adr_i));
+    ASM_hold_dat : assert property(p_hold_bus(dat_i));
+    //ASM_hold_sel : assert property(p_hold_bus(sel_i));
+    ASM_hold_we : assert property(p_hold_bus(we_i));
+  Design: "Trust-Hub RHI011"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/Version4_jan22.zip"
+
+- ID: 39
+  Plain: >-
+    There should be no interference between master and slave when the master is communicating   with other slaves.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    // Without the assertion of cycle input (cyc_i) signal, no slave can be selected.
+    property p_never_invalid_request;
+      @(posedge clk_i) disable iff(rst_i) not(!cyc_i && stb_i);
+    endproperty
+    // An initial state when no slave or master is ready yet
+    sequence s_init_state;
+      (!cyc_i && !stb_i);
+    endsequence
+    // A state when a master is ready but slave is not selected yet
+    sequence s_mst_ready_state;
+      (cyc_i && !stb_i);
+    endsequence
+    // A state when a master and slave are ready
+    sequence s_slv_ready_state;
+      (cyc_i && stb_i);
+    endsequence
+    // No state transition takes place from slave ready state to other states(master ready or initial state) when ack_o signal is not asserted
+    property p_slv_ready_hold_state;
+      @(posedge clk_i) disable iff(rst_i) (s_slv_ready_state and !ack_o) |=> s_slv_ready_state;
+    endproperty
+    //if the current slave is in ready state, input from the master should not change until acknoledge is asserted
+    property p_hold_bus (bus);
+      @(posedge clk_i) disable iff(rst_i) (s_slv_ready_state) |=> ((bus == $past(bus)) && !ack_o) or ((bus != $past(bus)) && ack_o);
+    endproperty
+    ASM_never_invalid_request : assert property(p_never_invalid_request);
+    ASM_slv_ready_hold_state : assert property(p_slv_ready_hold_state);
+    ASM_hold_adr : assert property(p_hold_bus(adr_i));
+    ASM_hold_dat : assert property(p_hold_bus(dat_i));
+    ASM_hold_we : assert property(p_hold_bus(we_i));
+  Design: "Trust-Hub RHI021"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/Version4_jan22.zip"
+
+- ID: 40
+  Plain: >-
+    Once the write-once registers are programmed, they should become read only.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    sequence s1;
+      ($rose (write) ##[1:$] $rose(register_write_once_example.Write_once_status));
+    endsequence
+    property write_vulnerability;
+      @(posedge Clk) disable iff (!ip_resetn) always (s1);
+    endproperty
+    ap_write_vulnerability: assert property (write_vulnerability);
+  Design: "Trust-Hub RMI041"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/RMI041.zip"
+
+- ID: 41
+  Plain: >-
+    Illegal or undocumented instruction can be executed due to weakness in translating specification to implementation. According to RISC-V specification, decoder should ignore rs1 and rd1 field while executing an (imm) instruction.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property rs1_rd1_field;
+      @(posedge clk_i) (~i_ariane.i_cva6.id_stage_i.decoder_i.instr[19:15] || ~i_ariane.i_cva6.id_stage_i.decoder_i.instr[11:7]) |-> i_ariane.i_cva6.id_stage_i.decoder_i.illegal_instr== 1'b0;
+    endproperty
+  Design: "Trust-Hub RMI051"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/RMI051.zip"
+
+- ID: 42
+  Plain: >-
+    Ensure all state registers are initialized during reset. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property async_rst_signal1;
+      @(posedge clk_i) (!rst_ni |=> (if_stage_i.pc_id_o == 32'h00000000));
+    endproperty
+    assert property(async_rst_signal1);
+  Design: "Trust-Hub RMI061"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/RMI061.zip"
+
+- ID: 43
+  Plain: >-
+    The privilege level of the core must be in user specific mode after reset otherwise any other privilege level can pave the way to unauthorized access.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property async_rst_signal;
+      @(posedge clk_i) (!rst_ni |=> (cs_registers_i.priv_lvl_q == 2'b11));
+    endproperty
+    assert property (async_rst_signal);
+  Design: "Trust-Hub RMI062"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/RMI062.zip"
+
+- ID: 44
+  Plain: >-
+    Privilege level of the core must be restored to a specific privilege level after processing an interrupt request. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property interrupt_handeling;
+      @(posedge clk_i) disable iff (!rst_ni) (cs_registers_i.priv_lvl_q == 2'b00 && cs_registers_i.is_irq == 1'b1 && cs_registers_i.csr_irq_sec_i == 1'b1) |=> (cs_registers_i.priv_lvl_n == 2'b00);
+    endproperty
+    a_interrupt_handeling: cover property(interrupt_handeling);
+  Design: "Trust-Hub RMI071"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/RMI071.zip"
+
+- ID: 45
+  Plain: >-
+    (REWRITE THIS) It should be checked in design time, whether program counter’s value is writeable from debug access port or not during HALT.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold SPV"
+  Assertions: |-
+    check_spv -create -from {dbg_uart_rxd} -from_precond {dbg_0.dbg_en_s==1'b1} -to {frontend_0.pc} -name "reciever_to_pc"
+  Design: "Trust-Hub RTD011"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/RTD011.zip"
+
+- ID: 46
+  Plain: >-
+    Program Counter’s value should not be readable through Debug Access Port (DAP) when a processor is not in HALT mode debugging.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold SPV"
+  Assertions: |-
+    check_spv -create -from {frontend_0.pc} -from_precond {dbg_0.dbg_en_s==1'b0} -to {dbg_uart_txd} -name "pc_to_trans"
+  Design: "Trust-Hub RTD012"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/RTD012.zip"
+
+- ID: 47
+  Plain: >-
+    Privileged memory (data memory/physical memory) access should be denied in HALT operation through DAP.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold SPV"
+  Assertions: |-
+    check_spv -create -from {dbg_uart_rxd} -from_precond {dbg_0.dbg_en_s==1'b1} -to {mem_backbone_0.dmem_din} -name "reciever_to_memory"
+    check_spv -create -from {mem_backbone_0.dmem_dout} -from_precond {dbg_0.dbg_en_s==1'b1} -to {dbg_uart_txd} -name "memory_to_transmitter"
+  Design: "Trust-Hub RTD013"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/RTD013.zip"
+
+- ID: 48
+  Plain: >-
+    During Debugging, control and status registers should be read only. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: ""
+  Assertions: |-
+    cover {{debug_req_i && id_stage_i.controller_i.debug_mode_q} ##[1:$] {cs_registers_i.csr_op_i == 2'b01}}
+  Design: "Trust-Hub RTD015"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/RTD015.zip"
+
+- ID: 49
+  Plain: >-
+    Debugger’s accessibility should be authorized before accepting debug request. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold SPV"
+  Assertions: |-
+    check_spv -create -from {pc_id} -to {crash_dump_o.current_pc} -from_precond {debug_req_i== 1'b1} -to_precond {debug_req_i== 1'b1}
+  Design: "Trust-Hub RTD061"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/RTD061.zip"
+
+- ID: 150
+  Plain: >-
+    Debug should only be initialized in authorized order. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    a_single_step_dbg_taken_if: assert property (@(posedge clk_i) disable iff (!rst_ni) (id_stage_i.controller_i.ctrl_fsm_cs==BOOT_SET && id_stage_i.controller_i.debug_req_pending == 1'b1 |=> id_stage_i.controller_i.ctrl_fsm_ns==DBG_TAKEN_IF));
+    a_single_step_dbg_taken_if1: assert property (@(posedge clk_i) disable iff (!rst_ni) (id_stage_i.controller_i.ctrl_fsm_cs==BOOT_SET && id_stage_i.controller_i.debug_req_pending == 1'b0 |=> id_stage_i.controller_i.ctrl_fsm_ns==FIRST_FETCH));
+  Design: "Trust-Hub RTD071"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/RTD071.zip"
+
+- ID: 151
+  Plain: >-
+    Debug interface should not have access to the control registers associated with harvesting mechanism of a TRNG. 
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold SPV"
+  Assertions: |-
+    check_spv -create -from {debug_update} -to {mixer_inst.mixer_ctrl_reg} -name "debug_to_harvesting_mixer"
+  Design: "Trust-Hub RTG011"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/RTG011.zip"
+
+- ID: 152
+  Plain: >-
+    The biasedness of an entropy source of TRNG should be less than a threshold value.
+  Threat: ""
+  CWE: -1
+  CAPEC: -1
+  Tool: "JasperGold"
+  Assertions: |-
+    property biasness;
+      @(posedge clk) disable iff (!reset_n) $countones(read_data^$past(read_data,1)) >= 4;
+    endproperty
+    ap_biasness: assert property (biasness);
+  Design: "Trust-Hub RTG021"
+  Origin: "Trust-Hub"
+  Reference: "https://trust-hub.org/downloads/resource/data/property-db/RTG021.zip"
+
 - ID: 50
   Threat: Insufficient Granularity of Access Control
   Plain: >-
