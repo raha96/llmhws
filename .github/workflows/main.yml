@@ -1,0 +1,9 @@
+name: Commit checks
+on: push
+jobs:
+  validate:
+    name: Validate source.yaml
+    runs-on: ubuntu-latest
+    steps:
+    - name: Validate
+      run: python tools/validate.py source.yaml
