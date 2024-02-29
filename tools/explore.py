@@ -8,8 +8,8 @@ expected_types = {
     "ID": int, 
     "Plain": str, 
     "Threat": str, 
-    "CWE": int, 
-    "CAPEC": int, 
+    "CWE": list, 
+    "CAPEC": list, 
     "Assertions": str, 
     "Design": str, 
     "Origin": str, 
@@ -32,7 +32,7 @@ def load_validate(path:str, verbose:bool=False):
         else:
             ids.append(id)
         assert type(record) == dict, f"Invalid YAML format: Expected dict type for the record, found {type(record)} instead (@ ID = `{id}`)"
-        # Check the datatypes for all records
+        # Check the datatypes for all fields
         missing = []
         for field in expected_fields:
             if (not field in record) or (record[field] is None) or (type(record[field]) == int and record[field] == -1):
@@ -51,6 +51,15 @@ def load_validate(path:str, verbose:bool=False):
         if len(extra):
             if (verbose):
                 print(f"Info: Extra fields {extra} found (@ ID = `{id}`)")
+        # Check the data types for fields that are lists
+        if type(record["CAPEC"]) == list:
+            for capec_id in record["CAPEC"]:
+                if type(capec_id) != int:
+                    print(f"Warning: Expected integer for CAPEC ID, found {capec_id} (@ ID = `{id}`)")
+        if type(record["CWE"]) == list:
+            for cwe_id in record["CWE"]:
+                if type(cwe_id) != int:
+                    print(f"Warning: Expected integer for CWE ID, found {cwe_id} (@ ID = `{id}`)")
     return root
 
 if __name__ == "__main__":
