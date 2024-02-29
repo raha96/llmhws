@@ -8,6 +8,7 @@
   Threat: "Software"
   CWE: 1198
   CAPEC: 233
+  Tool: "JasperGold"
   Assertions: |-
     property one1;
       @(posedge clk_i) (debug_req_i == 1’b0)|-> (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_S) or (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_U) or (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_M);
@@ -39,6 +40,7 @@
   Threat: "Software"
   CWE: 266
   CAPEC: 233
+  Tool: "JasperGold"
   Assertions: |-
     property one1;
       @(posedge clk_i) (debug_req_i == 1’b0)|-> (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_S) or (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_U) or (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_M);
@@ -70,6 +72,7 @@
   Threat: "Software"
   CWE: 1198
   CAPEC: 233
+  Tool: "JasperGold"
   Assertions: |-
     property one1;
       @(posedge clk_i) (debug_req_i == 1’b0)|-> (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_S) or (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_U) or (ariane.csr_regfile_i.priv_lvl_o == riscv::PRIV_LVL_M);
@@ -101,6 +104,7 @@
   Threat: "Software"
   CWE: 1272
   CAPEC: 233
+  Tool: "JasperGold"
   Assertions: |-
     property priv_viol;  
       @(posedge clk_i)  disable iff (!rst_ni)  ( ariane.csr_regfile_i.privilege_violation) |-> (~ariane.csr_regfile_i.csr_we  && ~ariane.csr_regfile_i.csr_read );
@@ -119,6 +123,7 @@
   Threat: "Software"
   CWE: 1262
   CAPEC: 233
+  Tool: "JasperGold"
   Assertions: |-
     property mmu;
       @(posedge clk_i) disable iff (!rst_ni) (ariane.ex_stage_i.lsu_i.i_mmu.icache_areq_i.fetch_req && ((ariane.ex_stage_i.lsu_i.i_mmu.priv_lvl_i == riscv::PRIV_LVL_U) && ~ariane.ex_stage_i.lsu_i.i_mmu.itlb_content.u)) |-> (ariane.ex_stage_i.lsu_i.i_mmu.iaccess_err == 1);
@@ -140,6 +145,7 @@
   Threat: "Software"
   CWE: 1262
   CAPEC: 233
+  Tool: "JasperGold"
   Assertions: |-
     property pmp;
       (posedge clk_i) disable iff (!rst_ni) (ariane.ex_stage_i.lsu_i.i_mmu.i_pmp_if.priv_lvl_i == riscv::PRIV_LVL_S) |-> (ariane.ex_stage_i.lsu_i.i_mmu.i_pmp_if.allow_o !=1);
