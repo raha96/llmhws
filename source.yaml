@@ -6,8 +6,8 @@
     hardware data. This threat could allow any adversary to exploit a weakness enabling them to elevate their 
     privilege and perform an action that they are not supposed to be authorized to perform. 
   Threat: "Software"
-  CWE: 1198
-  CAPEC: 233
+  CWE: [1198]
+  CAPEC: [233]
   Tool: "JasperGold"
   Assertions: |-
     property one1;
@@ -38,8 +38,8 @@
     hardware data. This threat could allow any adversary to exploit a weakness enabling them to elevate their 
     privilege and perform an action that they are not supposed to be authorized to perform. 
   Threat: "Software"
-  CWE: 266
-  CAPEC: 233
+  CWE: [266]
+  CAPEC: [233]
   Tool: "JasperGold"
   Assertions: |-
     property one1;
@@ -70,8 +70,8 @@
     hardware data. This threat could allow any adversary to exploit a weakness enabling them to elevate their 
     privilege and perform an action that they are not supposed to be authorized to perform. 
   Threat: "Software"
-  CWE: 1198
-  CAPEC: 233
+  CWE: [1198]
+  CAPEC: [233]
   Tool: "JasperGold"
   Assertions: |-
     property one1;
@@ -102,8 +102,8 @@
     with the hardware data. During the execution of an instruction, the privilege level should not be altered. 
     Changing the privilege level during this can lead to access control violations and possible integrity loss. 
   Threat: "Software"
-  CWE: 1272
-  CAPEC: 233
+  CWE: [1272]
+  CAPEC: [233]
   Tool: "JasperGold"
   Assertions: |-
     property priv_viol;  
@@ -121,8 +121,8 @@
     different privilege levels. This vulnerability allows any attacker to access supervisor or machine-level 
     memory pages from user-level privilege mode without generating any data access error. 
   Threat: "Software"
-  CWE: 1262
-  CAPEC: 233
+  CWE: [1262]
+  CAPEC: [233]
   Tool: "JasperGold"
   Assertions: |-
     property mmu;
@@ -143,8 +143,8 @@
     memory access is given to the lower privilege levels. However, this vulnerability can enable an attacker to 
     gain the memory access even with lower privilege levels (S mode and U mode). 
   Threat: "Software"
-  CWE: 1262
-  CAPEC: 233
+  CWE: [1262]
+  CAPEC: [233]
   Tool: "JasperGold"
   Assertions: |-
     property pmp;
@@ -159,8 +159,8 @@
   Plain: >-
     Encryption key should not be observable from test and debug ports.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from {key} -to {test_so} -name "observability_of_key"
@@ -172,8 +172,8 @@
   Plain: >-
     FSM State flip-flop should not be controllable and observable from the additional test and debug ports. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from {test_si} -to {next_FSM} -name "controllability_of_state_flip_flop"
@@ -186,8 +186,8 @@
   Plain: >-
     For a certain FSM state encoding scheme, the Fault Injection Feasibility (FIF) metric should not have the value 1.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property FI_vulnerability;
@@ -202,8 +202,8 @@
   Plain: >-
     To resist fault injection vulnerability, FSM encoding of encryption algorithm should be implemented in such a way that an FSM state cannot be accessed from a don’t care state. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property finalRoundAccessFromDontCare;
@@ -221,8 +221,8 @@
   Plain: >-
     Final_round of AES should only be accessed from the do_round and should not be accessed from any don’t care states.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property accessToFinalRound;
@@ -239,8 +239,8 @@
   Plain: >-
     RESULT state should only be accessed from SQR state and should not be accessed from any don’t care states. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property dontCareState;
@@ -257,8 +257,8 @@
   Plain: >-
     A reset signal should be enabled for the scan flip-flops whenever there is a switch from the functional mode to the test mode.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property testmode;
@@ -275,8 +275,8 @@
     fault injection attack. When state transition takes place between two consecutive unprotected states, then hamming distance between 
     the encoded states should be 1.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property one;
@@ -311,8 +311,8 @@
   Plain: >-
     All unused states of an FSM should be handled through default statement which ensures the system to be in secure state.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property unused_state_vulnerability1;
@@ -328,8 +328,8 @@
     Control and status register’s contents should be copied to/from any general-purpose registers based on the access 
     type (read-only, write-only, read-write etc.) of each bit of the control and status register.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold CSR"
   Assertions: |-
     Access description for JasperGold CSR
@@ -342,8 +342,8 @@
     Privilege level of the load and store module should not be changed if the previous privilege level of the host 
     processor was set higher than current privilege level.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property vul_PMU_priv_level_1;
@@ -363,8 +363,8 @@
     Load-Store Unit (LSU) should not accept access requests if more outstanding transactions are requested than its 
     depth. (The depth of an LSU is the capability of handling the number of transactions that are in queue to be executed). 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property p_no_transaction_count_overflow_0;
@@ -383,8 +383,8 @@
   Plain: >-
     The cipher text ready signal should be low when encryption key is loaded to an AES. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property reset_key_load1_done0;
@@ -404,8 +404,8 @@
   Plain: >-
     AES key should not be shared with other modules. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property AES_key_sharing;
@@ -420,8 +420,8 @@
   Plain: >-
     Control registers should not be observable from the output signals. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from next_FSM -to_all {data_stable key_ready finished round_type_sel}
@@ -433,8 +433,8 @@
   Plain: >-
     The cipher-text ready signal should be only asserted from the final round state. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property finished signal;
@@ -449,8 +449,8 @@
   Plain: >-
     ‘Ready’ signal should be asserted after certain cycles of the INITIAL_ROUND.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property constantCycleOperation;
@@ -465,8 +465,8 @@
   Plain: >-
     DO_ROUND must occur before the FINAL_ROUND. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property doRoundBeforeFinalRound;
@@ -481,8 +481,8 @@
   Plain: >-
     FINAL_ROUND should only be accessed from DO_ROUND. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property accessToFinalRound;
@@ -497,8 +497,8 @@
   Plain: >-
     AES Key should not flow to the ciphertext when the plain text matches with a specific value. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from {aes.slv_reg7} -to {aes.AES_pipe.cipher_text} -name "key_to_ciphertext"
@@ -511,8 +511,8 @@
   Plain: >-
     To avoid side-channel attacks, intermediate variables should not be relevant with a portion (# = k) of key bits (e.g., 1 < k ≤ 32) and plaintext bits (# = m, m > 0)
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold SPV"
   Assertions: |-
     assume {clk_count == 0 |-> Drdy == 0}
@@ -534,8 +534,8 @@
   Plain: >-
     `Finished` signal should be high at `RESULT` state.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property finishedSignal;
@@ -550,8 +550,8 @@
   Plain: >-
     Control registers should not be observable from output signal.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from next_FSM -to_all {start finished}
@@ -563,8 +563,8 @@
   Plain: >-
     `RESULT` state can only be accessed from `SQR` state. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property accessToResult;
@@ -579,8 +579,8 @@
   Plain: >-
     `MULT` and `SQR` both states must occur before reaching the `RESULT` state. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property multSqrThenResult;
@@ -595,8 +595,8 @@
   Plain: >-
     `finished/ready` signal should be high after certain clock cycles of the initial state.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property constant_9_Cycle;
@@ -611,8 +611,8 @@
   Plain: >-
     `valid` signal should be high only at the final round.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property validSignal;
@@ -627,8 +627,8 @@
   Plain: >-
     The number of cycles between the initial and final round of the encryption operation should always be constant. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property constant_80_Cycle;
@@ -645,8 +645,8 @@
     factorizable. When the primes are generated using random number generators, it should be checked that they are not factorizable. 
     The hamming distance between the modulus should be at least 50%.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property one;
@@ -661,8 +661,8 @@
   Plain: >-
     When the primes are generated using random number generators, it should be checked that the modulus are not generated from first entropy.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property one;
@@ -681,8 +681,8 @@
   Plain: >-
     If private exponent (d) is lower than a threshold t1, the public exponent (e) should not be higher than a threshold t2. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property one;
@@ -700,8 +700,8 @@
     the product, such as whether a particular operation was successful or not. The discrepancy of design behavior 
     should not be observable for different inputs.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: ""
   Assertions: |-
     cover {(ld==1) ##1 (key_r == text_in_r) ## [1:$] done == 1}
@@ -716,8 +716,8 @@
     according to the bus protocol to avoid desynchronization between data and permission checking 
     logic.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     // Without the assertion of cycle input (cyc_i) signal, no slave can be selected.
@@ -778,8 +778,8 @@
   Plain: >-
     There should be no interference between master and slave when the master is communicating   with other slaves.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     // Without the assertion of cycle input (cyc_i) signal, no slave can be selected.
@@ -819,8 +819,8 @@
   Plain: >-
     Once the write-once registers are programmed, they should become read only.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     sequence s1;
@@ -838,8 +838,8 @@
   Plain: >-
     Illegal or undocumented instruction can be executed due to weakness in translating specification to implementation. According to RISC-V specification, decoder should ignore rs1 and rd1 field while executing an (imm) instruction.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property rs1_rd1_field;
@@ -853,8 +853,8 @@
   Plain: >-
     Ensure all state registers are initialized during reset. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property async_rst_signal1;
@@ -869,8 +869,8 @@
   Plain: >-
     The privilege level of the core must be in user specific mode after reset otherwise any other privilege level can pave the way to unauthorized access.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property async_rst_signal;
@@ -885,8 +885,8 @@
   Plain: >-
     Privilege level of the core must be restored to a specific privilege level after processing an interrupt request. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property interrupt_handeling;
@@ -901,8 +901,8 @@
   Plain: >-
     (REWRITE THIS) It should be checked in design time, whether program counter’s value is writeable from debug access port or not during HALT.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from {dbg_uart_rxd} -from_precond {dbg_0.dbg_en_s==1'b1} -to {frontend_0.pc} -name "reciever_to_pc"
@@ -914,8 +914,8 @@
   Plain: >-
     Program Counter’s value should not be readable through Debug Access Port (DAP) when a processor is not in HALT mode debugging.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from {frontend_0.pc} -from_precond {dbg_0.dbg_en_s==1'b0} -to {dbg_uart_txd} -name "pc_to_trans"
@@ -927,8 +927,8 @@
   Plain: >-
     Privileged memory (data memory/physical memory) access should be denied in HALT operation through DAP.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from {dbg_uart_rxd} -from_precond {dbg_0.dbg_en_s==1'b1} -to {mem_backbone_0.dmem_din} -name "reciever_to_memory"
@@ -941,8 +941,8 @@
   Plain: >-
     During Debugging, control and status registers should be read only. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: ""
   Assertions: |-
     cover {{debug_req_i && id_stage_i.controller_i.debug_mode_q} ##[1:$] {cs_registers_i.csr_op_i == 2'b01}}
@@ -954,8 +954,8 @@
   Plain: >-
     Debugger’s accessibility should be authorized before accepting debug request. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from {pc_id} -to {crash_dump_o.current_pc} -from_precond {debug_req_i== 1'b1} -to_precond {debug_req_i== 1'b1}
@@ -967,8 +967,8 @@
   Plain: >-
     Debug should only be initialized in authorized order. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     a_single_step_dbg_taken_if: assert property (@(posedge clk_i) disable iff (!rst_ni) (id_stage_i.controller_i.ctrl_fsm_cs==BOOT_SET && id_stage_i.controller_i.debug_req_pending == 1'b1 |=> id_stage_i.controller_i.ctrl_fsm_ns==DBG_TAKEN_IF));
@@ -981,8 +981,8 @@
   Plain: >-
     Debug interface should not have access to the control registers associated with harvesting mechanism of a TRNG. 
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from {debug_update} -to {mixer_inst.mixer_ctrl_reg} -name "debug_to_harvesting_mixer"
@@ -994,8 +994,8 @@
   Plain: >-
     The biasedness of an entropy source of TRNG should be less than a threshold value.
   Threat: ""
-  CWE: -1
-  CAPEC: -1
+  CWE: 
+  CAPEC: 
   Tool: "JasperGold"
   Assertions: |-
     property biasness;
@@ -1012,10 +1012,10 @@
     The product implements access controls via a policy or other feature with the intention to disable or restrict accesses (reads and/or writes) to assets in a system from untrusted agents. However, implemented access controls lack required granularity, which renders the control policy too broad because it allows accesses from unauthorized agents to the security-sensitive assets. 
     Integrated circuits and hardware engines can expose accesses to assets (device configuration, keys, etc.) to trusted firmware or a software module (commonly set by BIOS/bootloader). This access is typically access-controlled. Upon a power reset, the hardware or system usually starts with default values in registers, and the trusted firmware (Boot firmware) configures the necessary access-control protection.
     A common weakness that can exist in such protection schemes is that access controls or policies are not granular enough. This condition allows agents beyond trusted agents to access assets and could lead to a loss of functionality or the ability to set up the device securely. This further results in security risks from leaked, sensitive, key material to modification of device configuration.  
-  CWE: 1220
+  CWE: [1220]
   Language: Not Language-Specific
   Technologies: Not Technology-Specific
-  CAPEC: 1-180 
+  CAPEC: [1, 180]
   Attack Pattern Name: Accessing Functionality Not Properly Constrained by ACLs, Exploiting Incorrectly Configured Access Control Security Levels
   Assertions: 
   Design: 
@@ -1029,10 +1029,10 @@
     Hardware description language code incorrectly defines register defaults or hardware Intellectual Property (IP) parameters to insecure values.
     Integrated circuits and hardware IP software programmable controls and settings are commonly stored in register circuits. These register contents have to be initialized at hardware reset to defined default values that are hard coded in the hardware description language (HDL) code of the hardware unit. Hardware descriptive languages also support definition of parameter variables, which can be defined in code during instantiation of the hardware IP module. Such parameters are generally used to configure a specific instance of a hardware IP in the design.
     The system security settings of a hardware design can be affected by incorrectly defined default values or IP parameters. The hardware IP would be in an insecure state at power reset, and this can be exposed or exploited by untrusted software running on the system. Both register defaults and parameters are hardcoded values, which cannot be changed using software or firmware patches but must be changed in hardware silicon. Thus, such security issues are considerably more difficult to address later in the lifecycle. Hardware designs can have a large number of such parameters and register defaults settings, and it is important to have design tool support to check these settings in an automated way and be able to identify which settings are security sensitive.  
-  CWE: 1221 
+  CWE: [1221] 
   Language: Verilog (Undetermined Prevalence), VHDL (Undetermined Prevalence)
   Technologies: Not Technology-Specific
-  CAPEC: CAPEC-166 
+  CAPEC: [166] 
   Attack Pattern Name: Force the System to Reset Values
   Assertions: |-  
   Design: 
@@ -1046,10 +1046,10 @@
     The product uses physical debug or test interfaces with support for multiple access levels, but it assigns the wrong debug access level to an internal asset, providing unintended access to the asset from untrusted debug agents.
     Debug authorization can have multiple levels of access, defined such that different system internal assets are accessible based on the current authorized debug level. Other than debugger authentication (e.g., using passwords or challenges), the authorization can also be based on the system state or boot stage. For example, full system debug access might only be allowed early in boot after a system reset to ensure that previous session data is not accessible to the authenticated debugger.
     If this protection mechanism does not ensure that internal assets have the correct debug access level during each boot stage or change in system state, an attacker could obtain sensitive information from the internal asset using a debugger.  
-  CWE: 1244  
+  CWE: [1244]  
   Language: Not Language-Specific
   Technologies: Not Technology-Specific
-  CAPEC: CAPEC-114 
+  CAPEC: [114] 
   Attack Pattern Name: Authentication Abuse
   Assertions: |-  
   Design:  
@@ -1062,10 +1062,10 @@
   Plain: >-
     The hardware does not fully clear security-sensitive values, such as keys and intermediate values in cryptographic operations, when debug mode is entered.
     Security sensitive values, keys, intermediate steps of cryptographic operations, etc. are stored in temporary registers in the hardware. If these values are not cleared when debug mode is entered they may be accessed by a debugger allowing sensitive information to be accessible by untrusted parties.   
-  CWE: 1258 
+  CWE: [1258] 
   Language: Not Language-Specific
   Technologies: Not Technology-Specific
-  CAPEC: CAPEC-150, CAPEC-204, CAPEC-37, CAPEC-545 
+  CAPEC: [150, 204, 37, 545]
   Attack Pattern Name: Collect Data from Common Resource Locations, Lifting Sensitive Data Embedded in Cache, Retrieve Embedded Sensitive Data, Pull Data from System Resources
   Assertions: |-  
   Design:  
@@ -1078,10 +1078,10 @@
   Plain: >-
     The System-On-A-Chip (SoC) implements a Security Token mechanism to differentiate what actions are allowed or disallowed when a transaction originates from an entity. However, the Security Tokens are improperly protected.
     Systems-On-A-Chip (Integrated circuits and hardware engines) implement Security Tokens to differentiate and identify which actions originated from which agent. These actions may be one of the directives 'read', 'write', 'program', 'reset', 'fetch', 'compute', etc. Security Tokens are assigned to every agent in the System that is capable of generating an action or receiving an action from another agent. Multiple Security Tokens may be assigned to an agent and may be unique based on the agent's trust level or allowed privileges. Since the Security Tokens are integral for the maintenance of security in an SoC, they need to be protected properly. A common weakness afflicting Security Tokens is improperly restricting the assignment to trusted components. Consequently, an improperly protected Security Token may be able to be programmed by a malicious agent (i.e., the Security Token is mutable) to spoof the action as if it originated from a trusted agent. 
-  CWE: 1259   
+  CWE: [1259]   
   Language: Not Language-Specific
   Technologies: Not Technology-Specific
-  CAPEC: CAPEC-121, CAPEC-681
+  CAPEC: [121, 681]
   Attack Pattern Name: Exploit Non-Production Interfaces, Exploitation of Improperly Controlled Hardware Security Identifiers
   Assertions: |-  
   Design: 
@@ -1092,10 +1092,10 @@
   Threat: Hardware Logic with Insecure De-Synchronization between Control and Data Channels
   Plain: >-
     The hardware logic for error handling and security checks can incorrectly forward data before the security check is complete. Many high-performance on-chip bus protocols and processor data-paths employ separate channels for control and data to increase parallelism and maximize throughput. Bugs in the hardware logic that handle errors and security checks can make it possible for data to be forwarded before the completion of the security checks. If the data can propagate to a location in the hardware observable to an attacker, loss of data confidentiality can occur. 'Meltdown' is a concrete example of how de-synchronization between data and permissions checking logic can violate confidentiality requirements. Data loaded from a page marked as privileged was returned to the cpu regardless of current privilege level for performance reasons. The assumption was that the cpu could later remove all traces of this data during the handling of the illegal memory access exception, but this assumption was proven false as traces of the secret data were not removed from the microarchitectural state.
-  CWE: 1264   
+  CWE: [1264]   
   Language: Not Language-Specific
   Technologies: Not Technology-Specific
-  CAPEC: CAPEC-233, CAPEC-663
+  CAPEC: [233, 663]
   Attack Pattern Name: Privilege Escalation, Exploitation of Transient Instruction Execution
   Assertions: |-  
   Design: 
