@@ -35,7 +35,9 @@ Use YAML: https://learnxinyminutes.com/docs/yaml/
 
 All data must be stored in `source.yaml`. Other artifacts are automatically generated from the source. 
 
-Please follow the guidelines in `ContributionRules.md`.
+Please follow the guidelines in `ContributionRules.md`. Include the original design code in `Designs` folder if possible. The expected format is to use a sensible folder name that includes some script file meant to simulate or verify the design. 
+
+**Please be mindful of the relevant licenses when using or referencing to this repository, specially the 'Designs' folder that contains external code with minor modifications.**
 
 # TODO
 
