@@ -15,10 +15,10 @@ This repository is meant to host a dataset of potential hardware vulnerabilites 
  - Plain: Plain (English) language description of the vulnerability. Can be multiline.
  - Threat: Threat model.
    - Software: Hardware vulnerabilities that can be exploited by malicious software code. Relevant in the context of SoC security. 
-- CWE (integer): CWE number
-- CAPEC (integer): CAPEC number
+- WeaknessClassification (List of string): The classification of the weakness (e.g. "CWE-###", "Hardware Trojan", etc.)
+- CAPEC (list of integers): CAPEC number if applicable
 - Assertions: SystemVerilog assertions written to check for the vulnerability. Can be multiline.
-- Design: Name of the design involved.
+- Design: Path to the design file (Deprecated: Name of the design involved)
   - Ariane: https://github.com/lowRISC/ariane
 - Origin: Dataset of origin, or the source website.
   - CAD for Security: http://cad4security.org
