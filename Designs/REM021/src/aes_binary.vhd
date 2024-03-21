@@ -41,7 +41,7 @@
 -- $Revision::                                       $
 -------------------------------------------------------------------------------
 
-
+-- _LLMHWS_HEADER_COMMENT_END_
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
@@ -105,7 +105,7 @@ begin
 
 		
 					
-	
+-- _LLMHWS_FSM1_BEGIN_
 		case FSM is
 			when WAIT_KEY =>
 				if key_ready = '1' then
@@ -136,6 +136,7 @@ begin
 			if key_ready = '0' then
 				next_FSM <= WAIT_KEY;
 			end if;
+-- _LLMHWS_FSM1_END_
 	end process gen_next_fsm;
 
 	-- purpose: assign outputs for encryption
@@ -143,6 +144,7 @@ begin
 	-- inputs : FSM
 	com_output_assign : process (FSM, round_index) is
 	begin  -- process com_output_assign
+-- _LLMHWS_OUTPUTGEN_BEGIN_
 		-- save defaults for encrypt_FSM
 		round_type_sel	 <= "00";		-- signal initial_round
 		next_round_index <= round_index;
@@ -168,6 +170,7 @@ begin
 			when others =>
 				null;
 		end case;
+-- _LLMHWS_OUTPUTGEN_END_
 	end process com_output_assign;
 
 	-- purpose: clocked FSM for encryption
