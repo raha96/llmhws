@@ -213,7 +213,7 @@
         $past(aes_binary.FSM==3'b101);
     endproperty
     checkFinalRoundAccessFromDontCare: assert property(finalRoundAccessFromDontCare);
-  Design: "Trust-Hub GEM061"
+  Design: "./Designs/GEM061/"
   Origin: "Trust-Hub"
   Reference: "https://trust-hub.org/downloads/resource/data/property-db/GEM061.zip"
 
@@ -441,7 +441,7 @@
       @(posedge clk) (finished==1'b1) |-> aes_binary.FSM==aes_binary.FINAL_ROUND;
     endproperty
     checkFinishedSignal: assert property(finishedSignal);
-  Design: "Trust-Hub REM021"
+  Design: "./Designs/REM021/"
   Origin: "Trust-Hub"
   Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM021.zip"
 
@@ -473,7 +473,7 @@
       @(posedge clk) ((aes_binary.FSM==WAIT_DATA) ##1(aes_binary.FSM==INITIAL_ROUND)) ##1 (!((aes_binary.FSM==DO_ROUND) & !(aes_binary.FSM==FINAL_ROUND)))[*1:$] |-> !(aes_binary.FSM==FINAL_ROUND);
     endproperty
     checkDoRoundBeforeFinalRound: assert property(doRoundBeforeFinalRound);
-  Design: "Trust-Hub REM023"
+  Design: "./Designs/REM023/"
   Origin: "Trust-Hub"
   Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM023.zip"
 
@@ -489,7 +489,7 @@
       @(posedge clk) (aes_binary.FSM==FINAL_ROUND) |-> $past(aes_binary.FSM==DO_ROUND) || $past(aes_binary.FSM==FINAL_ROUND);
     endproperty
     checkAccessToFinalRound: assert property(accessToFinalRound);
-  Design: "Trust-Hub REM024"
+  Design: "./Designs/REM024/"
   Origin: "Trust-Hub"
   Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM024.zip"
 
@@ -542,7 +542,7 @@
       @(posedge clk) (finished==1'b1) |-> (RSA_binary.FSM==RESULT);
     endproperty
     finishedSignalProperty: assert property(finishedSignal);
-  Design: "Trust-Hub REM031"
+  Design: "./Designs/REM031/"
   Origin: "Trust-Hub"
   Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM031.zip"
 
@@ -571,7 +571,7 @@
       @(posedge clk) (RSA_binary.FSM==RESULT) |-> $past(RSA_binary.FSM==RESULT) || $past(RSA_binary.FSM==SQR);
     endproperty
     authorizedAccessToResult: assert property(accessToResult);
-  Design: "Trust-Hub REM041"
+  Design: "./Designs/REM041/"
   Origin: "Trust-Hub"
   Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM041.zip"
 
@@ -587,7 +587,7 @@
       @(posedge clk) (RSA_binary.FSM==RESULT) |-> $past(RSA_binary.FSM==SQR,1) && $past(RSA_binary.FSM==MULT,2);
     endproperty
     checkMultSqrThenResult: assert property(multSqrThenResult);
-  Design: "Trust-Hub REM042"
+  Design: "./Designs/REM042/"
   Origin: "Trust-Hub"
   Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM042.zip"
 
@@ -603,7 +603,7 @@
       @(posedge clk) (finished==1'b1) |-> $past(RSA_binary.FSM==INIT,9);
     endproperty
     checkConstant_9_Cycle: assert property(constant_9_Cycle);
-  Design: "Trust-Hub REM043"
+  Design: "./Designs/REM043/"
   Origin: "Trust-Hub"
   Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM043.zip"
 
@@ -619,7 +619,7 @@
       @(posedge clk_i) (sha256_control.data_valid_o==1'b1) |-> (sha256_control.hash_control_st_reg==st_sha_data_valid);
     endproperty
     checkValidSiganlAtValidState: assert property(validSignal);
-  Design: "Trust-Hub REM051"
+  Design: "./Designs/REM051/"
   Origin: "Trust-Hub"
   Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM051.zip"
 
@@ -635,7 +635,7 @@
       @(posedge clk) disable iff (!reset_n) (sha512_core.sha512_ctrl_new == sha512_core.CTRL_IDLE) ##80 (sha512_core.sha512_ctrl_new == sha512_core.CTRL_DONE);
     endproperty
     checkConstant_80_Cycle: assert property(constant_80_Cycle);
-  Design: "Trust-Hub REM052"
+  Design: "./Designs/REM052/"
   Origin: "Trust-Hub"
   Reference: "https://trust-hub.org/downloads/resource/data/property-db/REM052.zip"
 
@@ -830,7 +830,7 @@
       @(posedge Clk) disable iff (!ip_resetn) always (s1);
     endproperty
     ap_write_vulnerability: assert property (write_vulnerability);
-  Design: "Trust-Hub RMI041"
+  Design: "./Designs/RMI041/"
   Origin: "Trust-Hub"
   Reference: "https://trust-hub.org/downloads/resource/data/property-db/RMI041.zip"
 
@@ -1002,7 +1002,7 @@
       @(posedge clk) disable iff (!reset_n) $countones(read_data^$past(read_data,1)) >= 4;
     endproperty
     ap_biasness: assert property (biasness);
-  Design: "Trust-Hub RTG021"
+  Design: "./Designs/RTG021/"
   Origin: "Trust-Hub"
   Reference: "https://trust-hub.org/downloads/resource/data/property-db/RTG021.zip"
 
