@@ -1,2 +1,2 @@
 - path: src/aes_binary.vhd
-  units: ["FSM1", "OUTPUTGEN"]
+  units: ["FSM1", "OUTPUTGEN", "OUTPUTGEN_1"]

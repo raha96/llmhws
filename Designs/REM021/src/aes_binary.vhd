@@ -151,8 +151,10 @@ begin
 		finished		 <= '0';
 
 		case FSM is
+-- _LLMHWS_OUTPUTGEN_1_BEGIN_
 			when WAIT_KEY =>
 				next_round_index <= X"0";
+-- _LLMHWS_OUTPUTGEN_1_END_
 			when WAIT_DATA =>
 				next_round_index <= X"0";
 			when INITIAL_ROUND =>
