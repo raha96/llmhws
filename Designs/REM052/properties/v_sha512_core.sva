@@ -1,0 +1,49 @@
+/*
+##################################################################
+#### File Name: jg_spv.tcl
+#### File for security path verification of a design 
+###
+###     Developed by 
+###
+###     Nusrat Farzna Dipu
+###     Graduate Research Assistant
+###     University of Florida
+###     Email: ndipu@ufl.edu
+###
+####################################################################
+*/
+
+module v_sha512_core(
+clk,
+reset_n,
+init,
+next,
+mode,
+work_factor,
+work_factor_num,
+block,
+ready,
+digest,
+digest_valid
+);
+
+
+input           clk, reset_n;
+input           init, next, work_factor, ready, digest_valid;
+input    [1:0] mode;
+input   [31:0] work_factor_num;
+input   [1023:0] block;
+input  [511:0] digest;
+
+
+//sha512_ctrl_new
+
+
+  property constant_80_Cycle; 
+             @(posedge clk)  
+		disable iff (!reset_n) (sha512_core.sha512_ctrl_new == sha512_core.CTRL_IDLE) ##80 (sha512_core.sha512_ctrl_new == sha512_core.CTRL_DONE);
+  endproperty 
+    checkConstant_80_Cycle: assert property(constant_80_Cycle); 
+
+
+endmodule

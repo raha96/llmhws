@@ -1,0 +1,4 @@
+module binding_module();
+bind trng
+  v_trng s_trng (.*);
+endmodule

@@ -1,0 +1,4 @@
+module binding_module();
+bind sha512_core
+  v_sha512_core s_sha512_core (.*);
+endmodule

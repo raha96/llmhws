@@ -1,0 +1,69 @@
+/*
+### File Name: jg_spv.tcl
+### File for security path verification of a design 
+##
+##     Developed by 
+##
+##     Nusrat Farzna Dipu
+##     Graduate Research Assistant
+##     University of Florida
+##     Email: ndipu@ufl.edu
+##
+###################################################################
+
+*/
+
+
+module v_trng
+(
+	 clk,
+             reset_n,
+
+             avalanche_noise,
+
+             cs,
+             we,
+             address,
+             write_data,
+             read_data,  //  generated true random number
+             error,
+
+             debug,
+             debug_update,
+
+             security_error
+);
+
+
+			input          clk;
+            input          reset_n;
+
+            input          avalanche_noise;
+
+            input          cs;
+            input          we;
+            input [11 : 0] address;
+            input [31 : 0] write_data;
+            input [31 : 0] read_data; //  generated true random number
+            input         error;
+
+            input [7 : 0] debug;
+            input          debug_update;
+
+            input         security_error;
+
+
+
+//properties
+
+	property biasness;
+                  @(posedge clk) disable iff (!reset_n) $countones(read_data^$past(read_data,1)) >= 4;
+
+          endproperty
+         ap_biasness: assert property (biasness);
+
+	
+//see reference : High-Speed and Bias-Free Optical Random Number Generator
+
+
+endmodule

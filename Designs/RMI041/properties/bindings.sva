@@ -1,0 +1,4 @@
+module binding_module();
+bind register_write_once_example
+  v_register_write_once_example s_register_write_once_example (.*);
+endmodule

@@ -1,0 +1,55 @@
+/*
+### File Name: jg_spv.tcl
+### File for security path verification of a design 
+##
+##     Developed by 
+##
+##     Nusrat Farzna Dipu
+##     Graduate Research Assistant
+##     University of Florida
+##     Email: ndipu@ufl.edu
+##
+###################################################################
+
+*/
+
+
+module v_register_write_once_example
+(
+	 Data_in,
+	 Clk,
+	 ip_resetn,
+	 global_resetn,
+	 write,
+	 Data_out
+);
+
+
+input [15:0] Data_in;
+input Clk;
+input ip_resetn;
+input global_resetn;
+input write;
+input reg [15:0] Data_out;
+
+
+	
+
+//properties
+	
+	  sequence s1;
+	    ($rose (write)  ##[1:$] $rose(register_write_once_example.Write_once_status));
+  	endsequence 
+
+	 
+
+	property write_vulnerability;
+                  @(posedge Clk) disable iff (!ip_resetn) always (s1);
+
+          endproperty
+         ap_write_vulnerability: assert property (write_vulnerability);
+
+	
+
+
+endmodule
