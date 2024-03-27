@@ -1,7 +1,8 @@
 from sys import argv
 import yaml
-import os.path
+import os
 import re
+import shutil
 
 is_annotation = re.compile(r"(--|//) *_LLMHWS_(.+)_(BEGIN|END)_")
 
@@ -27,6 +28,26 @@ class name_generator:
             out += "_END_"
         return out
 
+def check_design_folder(path:str) -> bool:
+    out = True
+    _ls = os.listdir(path)
+    if "SRC" not in _ls:
+        print(f"Error: `SRC` not found in path `{path}`. It must be a YAML file containing information about the code fragments marked for omission. ")
+        out = False
+    if "ORIGIN" not in _ls:
+        print(f"Error: `ORIGIN` not found in path `{path}`. It should be a text file containing an absolute URL pointing to the reference. ")
+        out = False
+    if "properties" not in _ls:
+        print(f"Error: `properties` folder not found in path `{path}. It should contain the SystemVerilog files describing the security assertions. ")
+        out = False
+    if "src" not in _ls:
+        print(f"Error: `src` folder not found in path `{path}`. It should contain the original design source code. ")
+        out = False
+    if "prove.tcl" not in _ls:
+        print(f"Error: `prove.tcl` not found in path `{path}`. It should contain a tcl script verifying the assertions when invoked via proper tools. ")
+        out = False
+    return out
+
 if __name__ == "__main__":
     if len(argv) != 4:
         print("Usage: python " + argv[0] + " <SRC-path> <llm-name> <output-path>")
@@ -42,6 +63,12 @@ if __name__ == "__main__":
     outpaths = []
 
     srcroot = os.path.dirname(yamlpath)
+    if not check_design_folder(srcroot):
+        print("Terminating due to an error. For more information, refer to the documentation in the GitHub repo. ")
+        exit(1)
+    else:
+        print("Found all required files, proceeding...")
+    
     for record in metadata:
         path = record["path"]
         units = record["units"]
@@ -52,7 +79,19 @@ if __name__ == "__main__":
             unit = unit_info[0]
             prompt_header = unit_info[1]
             prompt_inline = unit_info[2]
-            outpath = os.path.join(outroot, "prompt_" + pre_ext.split(os.path.sep)[-1] + "_" + unit + extension)
+
+            # Make the base directory
+            localoutroot = os.path.join(outroot, unit)
+            if os.path.exists(localoutroot):
+                shutil.rmtree(localoutroot)
+            os.mkdir(localoutroot)
+            # Copy the original source files to the destination, excluding SRC
+            shutil.copy(os.path.join(srcroot, "ORIGIN"), localoutroot)
+            shutil.copy(os.path.join(srcroot, "prove.tcl"), localoutroot)
+            shutil.copytree(os.path.join(srcroot, "properties"), os.path.join(localoutroot, "properties"))
+            shutil.copytree(os.path.join(srcroot, "src"), os.path.join(localoutroot, "src"))
+
+            outpath = os.path.join(localoutroot, path)
             fout = open(outpath, "w")
             # Print the instruction header
             fout.write(f"{prompt_header}\r\n\r\n")
@@ -84,6 +123,6 @@ if __name__ == "__main__":
             fout.close()
             outpaths.append(outpath)
     
-    print(f"Generated {len(outpaths)} output files in {outroot}. List: ")
+    print(f"Generated {len(outpaths)} output folders in {outroot}. List: ")
     for path in outpaths:
         print(os.path.abspath(path))
