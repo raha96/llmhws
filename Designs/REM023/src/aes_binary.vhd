@@ -41,7 +41,7 @@
 -- $Revision::                                       $
 -------------------------------------------------------------------------------
 
-
+-- _LLMHWS_HEADER_COMMENT_END_
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
@@ -105,14 +105,17 @@ begin
 
 		
 					
-	
+-- _LLMHWS_FSM1_BEGIN_
 		case FSM is
 			when WAIT_KEY =>
+-- _LLMHWS_FSM2_BEGIN_
 				if key_ready = '1' then
 					next_FSM <= WAIT_DATA;
 				else
 					next_FSM <= WAIT_KEY;
 				end if;
+-- _LLMHWS_FSM2_END_
+-- _LLMHWS_FSM5_BEGIN_
 			when WAIT_DATA =>
 				if data_stable = '1' then
 					next_FSM <= INITIAL_ROUND;
@@ -120,7 +123,9 @@ begin
 					next_FSM <= WAIT_DATA;
 				end if;
 			when INITIAL_ROUND =>
+-- _LLMHWS_FSM3_BEGIN_
 				next_FSM <= DO_ROUND;
+-- _LLMHWS_FSM3_END_
 			when DO_ROUND =>
 				if round_index = "1001" then
 					next_FSM <= FINAL_ROUND;
@@ -130,12 +135,17 @@ begin
 			when FINAL_ROUND =>
 				next_FSM <= WAIT_DATA;
 			when others =>
+-- _LLMHWS_FSM4_BEGIN_
 				next_FSM <= WAIT_KEY;
+-- _LLMHWS_FSM5_END_
+-- _LLMHWS_FSM4_END_
 		end case;
-		
+-- _LLMHWS_FSM6_BEGIN_
 			if key_ready = '0' then
 				next_FSM <= WAIT_KEY;
 			end if;
+-- _LLMHWS_FSM6_END_
+-- _LLMHWS_FSM1_END_
 	end process gen_next_fsm;
 
 	-- purpose: assign outputs for encryption

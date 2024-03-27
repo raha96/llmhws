@@ -1,0 +1,32 @@
+- path: src/aes_binary.vhd
+  prompts: {
+    "low_verbosity": "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. ", 
+    "mid_verbosity": "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. Make sure the order of states in the completed code conforms to the AES standard. ", 
+    "high_verbosity": "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. Make sure the completed code is written in a way that the DO_ROUND state always occurs before FINAL_ROUND. "
+  }
+  units: [
+    [
+      "FSM1", 
+      "Write the correct state transition logic here. Do not change anything else. "
+    ], 
+    [
+      "FSM2", 
+      "The state transition code for this state is missing; complete it. Do not change anything else. "
+    ], 
+    [
+      "FSM3", 
+      "The state transition code for this state is missing; complete it. Do not change anything else. "
+    ], 
+    [
+      "FSM4", 
+      "The state transition code for this state is missing; complete it. Do not change anything else. "
+    ], 
+    [
+      "FSM5", 
+      "The state transition code for several states is missing; complete it. Do not change anything else. "
+    ], 
+    [
+      "FSM6", 
+      "Write the proper code for handling key_ready = '0'. Do not change anything else. "
+    ]
+  ]
