@@ -48,11 +48,14 @@ if __name__ == "__main__":
         sourcepath = os.path.join(srcroot, path)
         pre_ext, extension = os.path.splitext(sourcepath)
         namegen = name_generator(extension[1:])
-        for unit in units:
+        for unit_info in units:
+            unit = unit_info[0]
+            prompt_header = unit_info[1]
+            prompt_inline = unit_info[2]
             outpath = os.path.join(outroot, "prompt_" + pre_ext.split(os.path.sep)[-1] + "_" + unit + extension)
             fout = open(outpath, "w")
             # Print the instruction header
-            fout.write("There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. \r\n\r\n")
+            fout.write(f"{prompt_header}\r\n\r\n")
             header_line = namegen.generate_name("HEADER_COMMENT", False)
             unit_begin_line = namegen.generate_name(unit, True)
             unit_end_line = namegen.generate_name(unit, False)
@@ -72,7 +75,7 @@ if __name__ == "__main__":
                         # Keep the lines. Meanwhile, wait for the unit to begin
                         if _line == unit_begin_line:
                             # Insert the LLM instruction in lieu of the first line of the unit
-                            fout.write(f"-- Instructions for {llmname}: Write the correct state transition logic here. Do not change anything else. \r\n")
+                            fout.write(f"-- Instructions for {llmname}: {prompt_inline}\r\n")
                             state = "unit"
                         else:
                             # Only print the lines that are not LLMHWS-related annotations

@@ -1,2 +1,18 @@
 - path: src/aes_binary.vhd
-  units: ["FSM1", "OUTPUTGEN", "OUTPUTGEN_1"]
+  units: [
+    [
+      "FSM1", 
+      "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. ", 
+      "Write the correct state transition logic here. Do not change anything else. "
+    ], 
+    [
+      "OUTPUTGEN", 
+      "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. ", 
+      "Write the correct state transition logic here. Do not change anything else. "
+    ], 
+    [
+      "OUTPUTGEN_1", 
+      "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. ", 
+      "Write the correct state transition logic here. Do not change anything else. "
+    ]
+  ]
