@@ -1,18 +1,20 @@
 - path: src/aes_binary.vhd
+  prompts: {
+    "low_verbosity": "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. ", 
+    "mid_verbosity": "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. Make sure the `finished` signal is generated in accordance with the AES standard. ", 
+    "high_verbosity": "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. Make sure the `finished` signal is only asserted from the FINAL_ROUND state. "
+  }
   units: [
     [
       "FSM1", 
-      "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. ", 
       "Write the correct state transition logic here. Do not change anything else. "
     ], 
     [
       "OUTPUTGEN", 
-      "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. ", 
-      "Write the correct state transition logic here. Do not change anything else. "
+      "Write the correct output generation logic here. Do not change anything else. "
     ], 
     [
       "OUTPUTGEN_1", 
-      "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. ", 
-      "Write the correct state transition logic here. Do not change anything else. "
+      "Write the code for generating next_round_index when the FSM value is `WAIT_KEY`. Do not change anything else. "
     ]
   ]
