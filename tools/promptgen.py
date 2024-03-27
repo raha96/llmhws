@@ -91,7 +91,7 @@ if __name__ == "__main__":
             shutil.copytree(os.path.join(srcroot, "properties"), os.path.join(localoutroot, "properties"))
             shutil.copytree(os.path.join(srcroot, "src"), os.path.join(localoutroot, "src"))
 
-            outpath = os.path.join(localoutroot, path)
+            outpath = os.path.join(outroot, "prompt_" + pre_ext.split(os.path.sep)[-1] + "_" + unit + extension)
             fout = open(outpath, "w")
             # Print the instruction header
             fout.write(f"{prompt_header}\r\n\r\n")

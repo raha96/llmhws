@@ -1,11 +1,8 @@
 from sys import argv
-import re
-
-promptline = re.compile(r"-- Instructions for .+: ")
 
 if __name__ == "__main__":
     if len(argv) != 4:
-        print("Usage: python " + argv[0] + " <prompt> <llm-generated-code> <output-path>")
+        print("Usage: python " + argv[0] + " <prompt-path> <llm-generated-code> <design-file-path>")
         exit(1)
     
     promptpath = argv[1]
