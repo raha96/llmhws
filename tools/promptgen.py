@@ -3,7 +3,7 @@ import yaml
 import os.path
 import re
 
-is_annotation = re.compile(r"(--|//) _LLMHWS_(.+)_(BEGIN|END)_")
+is_annotation = re.compile(r"(--|//) *_LLMHWS_(.+)_(BEGIN|END)_")
 
 class name_generator:
     def __init__(self, extension:str):
