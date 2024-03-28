@@ -4,29 +4,38 @@ import os
 import re
 import shutil
 
-is_annotation = re.compile(r"(--|//) *_LLMHWS_(.+)_(BEGIN|END)_")
+is_annotation = re.compile(r"\s*(--|//) *_LLMHWS_(.+)_(BEGIN|END)_")
+
+def detect_file_type(extension:str) -> str:
+        extension = extension.lower()
+        if extension == "vhd":
+            return "vhdl"
+        elif extension == "v" or extension == "sv":
+            return "verilog"
+        else:
+            raise f"Unsupported file extension `{extension}`"
+
+class commenter: 
+    def __init__(self, extension:str):
+        self.language = detect_file_type(extension)
+    def comment(self, line:str) -> str:
+        out = ""
+        if self.language == "vhdl":
+            out = "-- " + line
+        elif self.language == "verilog":
+            out = "// " + line
+        return out
 
 class name_generator:
     def __init__(self, extension:str):
-        extension = extension.lower()
-        if extension == "vhd":
-            self.language = "vhdl"
-        elif extension == "v" or extension == "sv":
-            self.language = "verilog"
-        else:
-            raise f"Unsupported file extension `{extension}`"
+        self._commenter = commenter(extension)
     def generate_name(self, base:str, isbegin:bool) -> str:
-        out = ""
-        if self.language == "vhdl":
-            out = "-- "
-        elif self.language == "verilog":
-            out = "// "
-        out += "_LLMHWS_" + base
+        out = "_LLMHWS_" + base
         if isbegin:
             out += "_BEGIN_"
         else:
             out += "_END_"
-        return out
+        return self._commenter.comment(out)
 
 def check_design_folder(path:str) -> bool:
     out = True
@@ -76,6 +85,7 @@ if __name__ == "__main__":
         sourcepath = os.path.join(srcroot, path)
         pre_ext, extension = os.path.splitext(sourcepath)
         namegen = name_generator(extension[1:])
+        commentgen = commenter(extension[1:])
         for verbosity in promptdict:
             prompt_header = promptdict[verbosity]
             for unit_info in units:
@@ -116,7 +126,7 @@ if __name__ == "__main__":
                             # Keep the lines. Meanwhile, wait for the unit to begin
                             if _line == unit_begin_line:
                                 # Insert the LLM instruction in lieu of the first line of the unit
-                                fout.write(f"-- Instructions for {llmname}: {prompt_inline}\r\n")
+                                fout.write(commentgen.comment(f"Instructions for {llmname}: {prompt_inline}\r\n"))
                                 state = "unit"
                             else:
                                 # Only print the lines that are not LLMHWS-related annotations
