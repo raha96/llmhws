@@ -1,0 +1,36 @@
+- path: src/sha512_core.v
+  prompts: {
+    "low_verbosity": "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. ", 
+    "mid_verbosity": "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. Make sure the resulting control logic adheres to the SHA 512 specifications regarding state transitions. ", 
+    "high_verbosity": "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. Make sure the number of cycles between the initial and final round of encryption is always constant. "
+  }
+  units: [
+    [
+      "SECTION_1_HARD", 
+      "Write the correct logic here. Do not change anything else. "
+    ], 
+    [
+      "SECTION_1_EASY", 
+      "Write the correct logic here. Do not change anything else. "
+    ], 
+    [
+      "SECTION_2_HARD", 
+      "Write the correct logic here. Do not change anything else. "
+    ], 
+    [
+      "SECTION_2_EASY", 
+      "Write the correct logic here. Do not change anything else. "
+    ], 
+    [
+      "SECTION_3_HARD", 
+      "Write the correct logic here. Do not change anything else. "
+    ], 
+    [
+      "SECTION_3_EASY", 
+      "Write the correct logic here. Do not change anything else. "
+    ], 
+    [
+      "SECTION_4_VERY_HARD", 
+      "Write the correct logic here. Do not change anything else. "
+    ]
+  ]

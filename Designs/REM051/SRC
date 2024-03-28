@@ -1,0 +1,20 @@
+- path: src/sha256_control.vhd
+  prompts: {
+    "low_verbosity": "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. ", 
+    "mid_verbosity": "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. Make sure the resulting control logic adheres to the SHA 256 specifications regarding `valid` signal generation. ", 
+    "high_verbosity": "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. Make sure the `valid` signal is only high at the final round. "
+  }
+  units: [
+    [
+      "SECTION_1", 
+      "Write the correct logic here. Do not change anything else. "
+    ], 
+    [
+      "SECTION_2", 
+      "Write the correct logic here. Do not change anything else. "
+    ], 
+    [
+      "SECTION_3", 
+      "Write the correct logic here. Do not change anything else. "
+    ]
+  ]

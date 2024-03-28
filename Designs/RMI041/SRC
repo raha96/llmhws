@@ -1,0 +1,32 @@
+- path: src/write_once_register.v
+  prompts: {
+    "low_verbosity": "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. ", 
+    "mid_verbosity": "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. Make sure the write-once register functions as expected. ", 
+    "high_verbosity": "There's a comment in the following code describing what you are supposed to do to make it work. Modify the code according to that comment. Make sure the register data can be written only once, and cannot be overwritten afterward. "
+  }
+  units: [
+    [
+      "SECTION_VERY_HARD", 
+      "Write the correct logic here. Do not change anything else. "
+    ], 
+    [
+      "SECTION_1_MEDIUM", 
+      "Write the correct logic here. Do not change anything else. "
+    ], 
+    [
+      "SECTION_1_EASY", 
+      "Write the correct logic here. Do not change anything else. "
+    ], 
+    [
+      "SECTION_2_HARD", 
+      "Write the correct logic here. Do not change anything else. "
+    ], 
+    [
+      "SECTION_2_EASY", 
+      "Write the correct logic here. Do not change anything else. "
+    ], 
+    [
+      "SECTION_3_EASY", 
+      "Write the correct logic here. Do not change anything else. "
+    ]
+  ]
