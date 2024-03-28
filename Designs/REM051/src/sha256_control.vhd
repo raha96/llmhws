@@ -1,3 +1,4 @@
+-- _LLMHWS_HEADER_COMMENT_END_
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -231,17 +232,17 @@ begin
                 core_ce <= '1';             -- latch result value into core registers
                 oregs_ce <= '1';            -- latch core result into regs accumulator
                 -- next state
-                -- _LLMHWS_SECTION_2_BEGIN
+                -- _LLMHWS_SECTION_2_BEGIN_
                 if sha_last_blk_reg = '1' then
-                    -- _LLMHWS_SECTION_3_BEGIN
+                    -- _LLMHWS_SECTION_3_BEGIN_
                     hash_control_st_next <= st_sha_data_valid;  -- no hmac operation: publish data valid
-                    -- _LLMHWS_SECTION_3_END
+                    -- _LLMHWS_SECTION_3_END_
                 elsif padding_reg = '1' then
                     hash_control_st_next <= st_sha_padding;     -- additional padding block
                 else
                     hash_control_st_next <= st_sha_data_input;  -- continue requesting input data
                 end if;
-                -- _LLMHWS_SECTION_2_END
+                -- _LLMHWS_SECTION_2_END_
             
             when st_sha_padding =>          -- padding of bits on the last message block
                 -- moore outputs                
@@ -311,9 +312,9 @@ if start_i = '1' then
     oregs_ld_o_proc :       oregs_ld_o      <= oregs_ld;
     Kt_addr_o_proc :        Kt_addr_o       <= std_logic_vector(st_cnt_reg(5 downto 0));
     di_req_o_proc :         di_req_o        <= di_req;
-    -- _LLMHWS_SECTION_1_BEGIN
+    -- _LLMHWS_SECTION_1_BEGIN_
     data_valid_o_proc :     data_valid_o    <= data_valid;
-    -- _LLMHWS_SECTION_1_END
+    -- _LLMHWS_SECTION_1_END_
     error_o_proc :          error_o         <= out_error;
 	 
 	 end rtl;

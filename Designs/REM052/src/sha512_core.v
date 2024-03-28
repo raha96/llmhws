@@ -37,7 +37,7 @@
 //
 //======================================================================
 
-
+// _LLMHWS_HEADER_COMMENT_END_
 `timescale 1ns / 100ps
 
 module sha512_core(
@@ -510,7 +510,7 @@ module sha512_core(
         CTRL_IDLE:
           begin
             if (init)
-              // _LLMHWS_SECTION_1_HARD_BEGIN
+              // _LLMHWS_SECTION_1_HARD_BEGIN_
               begin
                 ready_new           = 1'b0;
                 ready_we            = 1'b1;
@@ -522,14 +522,14 @@ module sha512_core(
                 round_ctr_rst       = 1;
                 digest_valid_new    = 0;
                 digest_valid_we     = 1;
-                // _LLMHWS_SECTION_1_EASY_BEGIN
+                // _LLMHWS_SECTION_1_EASY_BEGIN_
                 sha512_ctrl_new     = CTRL_ROUNDS;
-                // _LLMHWS_SECTION_1_EASY_END
+                // _LLMHWS_SECTION_1_EASY_END_
                 sha512_ctrl_we      = 1;
-                // _LLMHWS_SECTION_1_HARD_END
+                // _LLMHWS_SECTION_1_HARD_END_
               end
 
-            // _LLMHWS_SECTION_2_HARD_BEGIN
+            // _LLMHWS_SECTION_2_HARD_BEGIN_
             if (next)
               begin
                 ready_new           = 1'b0;
@@ -540,12 +540,12 @@ module sha512_core(
                 round_ctr_rst       = 1;
                 digest_valid_new    = 0;
                 digest_valid_we     = 1;
-                // _LLMHWS_SECTION_2_EASY_BEGIN
+                // _LLMHWS_SECTION_2_EASY_BEGIN_
                 sha512_ctrl_new     = CTRL_ROUNDS;
-                // _LLMHWS_SECTION_2_EASY_END
+                // _LLMHWS_SECTION_2_EASY_END_
                 sha512_ctrl_we      = 1;
               end
-              // _LLMHWS_SECTION_2_HARD_END
+              // _LLMHWS_SECTION_2_HARD_END_
           end
 
 
@@ -555,19 +555,19 @@ module sha512_core(
             state_update  = 1;
             round_ctr_inc = 1;
 
-            // _LLMHWS_SECTION_3_HARD_BEGIN
+            // _LLMHWS_SECTION_3_HARD_BEGIN_
             if (round_ctr_reg == SHA512_ROUNDS)
               begin
                 work_factor_ctr_inc = 1;
-                // _LLMHWS_SECTION_3_EASY_BEGIN
+                // _LLMHWS_SECTION_3_EASY_BEGIN_
                 sha512_ctrl_new     = CTRL_DONE;
-                // _LLMHWS_SECTION_3_EASY_END
+                // _LLMHWS_SECTION_3_EASY_END_
                 sha512_ctrl_we      = 1;
               end
-            // _LLMHWS_SECTION_3_HARD_END
+            // _LLMHWS_SECTION_3_HARD_END_
           end
 
-        // _LLMHWS_SECTION_4_VERY_HARD_BEGIN
+        // _LLMHWS_SECTION_4_VERY_HARD_BEGIN_
         CTRL_DONE:
           begin
             if (work_factor)
@@ -602,7 +602,7 @@ module sha512_core(
                 sha512_ctrl_we   = 1'b1;
               end
           end
-          // _LLMHWS_SECTION_4_VERY_HARD_END
+          // _LLMHWS_SECTION_4_VERY_HARD_END_
       endcase // case (sha512_ctrl_reg)
     end // sha512_ctrl_fsm
 
