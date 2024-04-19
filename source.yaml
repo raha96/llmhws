@@ -7,7 +7,7 @@
     privilege and perform an action that they are not supposed to be authorized to perform. 
   Threat: "Software"
   WeaknessClassification: ["CWE-1198"]
-  CAPEC: [233]
+  VulnerabilityClassification: [233]
   Tool: "JasperGold"
   Assertions: |-
     property one1;
@@ -39,7 +39,7 @@
     privilege and perform an action that they are not supposed to be authorized to perform. 
   Threat: "Software"
   WeaknessClassification: ["CWE-266"]
-  CAPEC: [233]
+  VulnerabilityClassification: [233]
   Tool: "JasperGold"
   Assertions: |-
     property one1;
@@ -71,7 +71,7 @@
     privilege and perform an action that they are not supposed to be authorized to perform. 
   Threat: "Software"
   WeaknessClassification: ["CWE-1198"]
-  CAPEC: [233]
+  VulnerabilityClassification: [233]
   Tool: "JasperGold"
   Assertions: |-
     property one1;
@@ -103,7 +103,7 @@
     Changing the privilege level during this can lead to access control violations and possible integrity loss. 
   Threat: "Software"
   WeaknessClassification: ["CWE-1272"]
-  CAPEC: [233]
+  VulnerabilityClassification: [233]
   Tool: "JasperGold"
   Assertions: |-
     property priv_viol;  
@@ -122,7 +122,7 @@
     memory pages from user-level privilege mode without generating any data access error. 
   Threat: "Software"
   WeaknessClassification: ["CWE-1262"]
-  CAPEC: [233]
+  VulnerabilityClassification: [233]
   Tool: "JasperGold"
   Assertions: |-
     property mmu;
@@ -144,7 +144,7 @@
     gain the memory access even with lower privilege levels (S mode and U mode). 
   Threat: "Software"
   WeaknessClassification: ["CWE-1262"]
-  CAPEC: [233]
+  VulnerabilityClassification: [233]
   Tool: "JasperGold"
   Assertions: |-
     property pmp;
@@ -160,7 +160,7 @@
     Encryption key should not be observable from test and debug ports.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from {key} -to {test_so} -name "observability_of_key"
@@ -173,7 +173,7 @@
     FSM State flip-flop should not be controllable and observable from the additional test and debug ports. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from {test_si} -to {next_FSM} -name "controllability_of_state_flip_flop"
@@ -187,7 +187,7 @@
     For a certain FSM state encoding scheme, the Fault Injection Feasibility (FIF) metric should not have the value 1.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property FI_vulnerability;
@@ -203,7 +203,7 @@
     To resist fault injection vulnerability, FSM encoding of encryption algorithm should be implemented in such a way that an FSM state cannot be accessed from a don’t care state. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property finalRoundAccessFromDontCare;
@@ -222,7 +222,7 @@
     Final_round of AES should only be accessed from the do_round and should not be accessed from any don’t care states.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property accessToFinalRound;
@@ -240,7 +240,7 @@
     RESULT state should only be accessed from SQR state and should not be accessed from any don’t care states. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property dontCareState;
@@ -258,7 +258,7 @@
     A reset signal should be enabled for the scan flip-flops whenever there is a switch from the functional mode to the test mode.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property testmode;
@@ -276,7 +276,7 @@
     the encoded states should be 1.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property one;
@@ -312,7 +312,7 @@
     All unused states of an FSM should be handled through default statement which ensures the system to be in secure state.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property unused_state_vulnerability1;
@@ -329,7 +329,7 @@
     type (read-only, write-only, read-write etc.) of each bit of the control and status register.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold CSR"
   Assertions: |-
     Access description for JasperGold CSR
@@ -343,7 +343,7 @@
     processor was set higher than current privilege level.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property vul_PMU_priv_level_1;
@@ -364,7 +364,7 @@
     depth. (The depth of an LSU is the capability of handling the number of transactions that are in queue to be executed). 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property p_no_transaction_count_overflow_0;
@@ -384,7 +384,7 @@
     The cipher text ready signal should be low when encryption key is loaded to an AES. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property reset_key_load1_done0;
@@ -405,7 +405,7 @@
     AES key should not be shared with other modules. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property AES_key_sharing;
@@ -421,7 +421,7 @@
     Control registers should not be observable from the output signals. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from next_FSM -to_all {data_stable key_ready finished round_type_sel}
@@ -434,7 +434,7 @@
     The cipher-text ready signal should be only asserted from the final round state. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property finished signal;
@@ -450,7 +450,7 @@
     ‘Ready’ signal should be asserted after certain cycles of the INITIAL_ROUND.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property constantCycleOperation;
@@ -466,7 +466,7 @@
     DO_ROUND must occur before the FINAL_ROUND. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property doRoundBeforeFinalRound;
@@ -482,7 +482,7 @@
     FINAL_ROUND should only be accessed from DO_ROUND. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property accessToFinalRound;
@@ -498,7 +498,7 @@
     AES Key should not flow to the ciphertext when the plain text matches with a specific value. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from {aes.slv_reg7} -to {aes.AES_pipe.cipher_text} -name "key_to_ciphertext"
@@ -512,7 +512,7 @@
     To avoid side-channel attacks, intermediate variables should not be relevant with a portion (# = k) of key bits (e.g., 1 < k ≤ 32) and plaintext bits (# = m, m > 0)
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold SPV"
   Assertions: |-
     assume {clk_count == 0 |-> Drdy == 0}
@@ -535,7 +535,7 @@
     `Finished` signal should be high at `RESULT` state.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property finishedSignal;
@@ -551,7 +551,7 @@
     Control registers should not be observable from output signal.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from next_FSM -to_all {start finished}
@@ -564,7 +564,7 @@
     `RESULT` state can only be accessed from `SQR` state. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property accessToResult;
@@ -580,7 +580,7 @@
     `MULT` and `SQR` both states must occur before reaching the `RESULT` state. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property multSqrThenResult;
@@ -596,7 +596,7 @@
     `finished/ready` signal should be high after certain clock cycles of the initial state.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property constant_9_Cycle;
@@ -612,7 +612,7 @@
     `valid` signal should be high only at the final round.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property validSignal;
@@ -628,7 +628,7 @@
     The number of cycles between the initial and final round of the encryption operation should always be constant. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property constant_80_Cycle;
@@ -646,7 +646,7 @@
     The hamming distance between the modulus should be at least 50%.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property one;
@@ -662,7 +662,7 @@
     When the primes are generated using random number generators, it should be checked that the modulus are not generated from first entropy.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property one;
@@ -682,7 +682,7 @@
     If private exponent (d) is lower than a threshold t1, the public exponent (e) should not be higher than a threshold t2. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property one;
@@ -701,7 +701,7 @@
     should not be observable for different inputs.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: ""
   Assertions: |-
     cover {(ld==1) ##1 (key_r == text_in_r) ## [1:$] done == 1}
@@ -717,7 +717,7 @@
     logic.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     // Without the assertion of cycle input (cyc_i) signal, no slave can be selected.
@@ -779,7 +779,7 @@
     There should be no interference between master and slave when the master is communicating   with other slaves.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     // Without the assertion of cycle input (cyc_i) signal, no slave can be selected.
@@ -820,7 +820,7 @@
     Once the write-once registers are programmed, they should become read only.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     sequence s1;
@@ -839,7 +839,7 @@
     Illegal or undocumented instruction can be executed due to weakness in translating specification to implementation. According to RISC-V specification, decoder should ignore rs1 and rd1 field while executing an (imm) instruction.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property rs1_rd1_field;
@@ -854,7 +854,7 @@
     Ensure all state registers are initialized during reset. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property async_rst_signal1;
@@ -870,7 +870,7 @@
     The privilege level of the core must be in user specific mode after reset otherwise any other privilege level can pave the way to unauthorized access.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property async_rst_signal;
@@ -886,7 +886,7 @@
     Privilege level of the core must be restored to a specific privilege level after processing an interrupt request. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property interrupt_handeling;
@@ -902,7 +902,7 @@
     (REWRITE THIS) It should be checked in design time, whether program counter’s value is writeable from debug access port or not during HALT.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from {dbg_uart_rxd} -from_precond {dbg_0.dbg_en_s==1'b1} -to {frontend_0.pc} -name "reciever_to_pc"
@@ -915,7 +915,7 @@
     Program Counter’s value should not be readable through Debug Access Port (DAP) when a processor is not in HALT mode debugging.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from {frontend_0.pc} -from_precond {dbg_0.dbg_en_s==1'b0} -to {dbg_uart_txd} -name "pc_to_trans"
@@ -928,7 +928,7 @@
     Privileged memory (data memory/physical memory) access should be denied in HALT operation through DAP.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from {dbg_uart_rxd} -from_precond {dbg_0.dbg_en_s==1'b1} -to {mem_backbone_0.dmem_din} -name "reciever_to_memory"
@@ -942,7 +942,7 @@
     During Debugging, control and status registers should be read only. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: ""
   Assertions: |-
     cover {{debug_req_i && id_stage_i.controller_i.debug_mode_q} ##[1:$] {cs_registers_i.csr_op_i == 2'b01}}
@@ -955,7 +955,7 @@
     Debugger’s accessibility should be authorized before accepting debug request. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from {pc_id} -to {crash_dump_o.current_pc} -from_precond {debug_req_i== 1'b1} -to_precond {debug_req_i== 1'b1}
@@ -968,7 +968,7 @@
     Debug should only be initialized in authorized order. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     a_single_step_dbg_taken_if: assert property (@(posedge clk_i) disable iff (!rst_ni) (id_stage_i.controller_i.ctrl_fsm_cs==BOOT_SET && id_stage_i.controller_i.debug_req_pending == 1'b1 |=> id_stage_i.controller_i.ctrl_fsm_ns==DBG_TAKEN_IF));
@@ -982,7 +982,7 @@
     Debug interface should not have access to the control registers associated with harvesting mechanism of a TRNG. 
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold SPV"
   Assertions: |-
     check_spv -create -from {debug_update} -to {mixer_inst.mixer_ctrl_reg} -name "debug_to_harvesting_mixer"
@@ -995,7 +995,7 @@
     The biasedness of an entropy source of TRNG should be less than a threshold value.
   Threat: ""
   WeaknessClassification: 
-  CAPEC: 
+  VulnerabilityClassification: 
   Tool: "JasperGold"
   Assertions: |-
     property biasness;
@@ -1015,7 +1015,7 @@
   WeaknessClassification: ["CWE-1220"]
   Language: "Not Language-Specific"
   Technologies: "Not Technology-Specific"
-  CAPEC: [1, 180]
+  VulnerabilityClassification: [1, 180]
   Threat: "Accessing Functionality Not Properly Constrained by ACLs, Exploiting Incorrectly Configured Access Control Security Levels"
   Assertions: 
   Design: 
@@ -1032,7 +1032,7 @@
   WeaknessClassification: ["CWE-1221"] 
   Language: Verilog (Undetermined Prevalence), VHDL (Undetermined Prevalence)
   Technologies: "Not Technology-Specific"
-  CAPEC: [166] 
+  VulnerabilityClassification: [166] 
   Threat: "Force the System to Reset Values"
   Assertions: |-  
   Design: 
@@ -1049,7 +1049,7 @@
   WeaknessClassification: ["CWE-1244"]  
   Language: "Not Language-Specific"
   Technologies: "Not Technology-Specific"
-  CAPEC: [114] 
+  VulnerabilityClassification: [114] 
   Threat: "Authentication Abuse"
   Assertions: |-  
   Design:  
@@ -1065,7 +1065,7 @@
   WeaknessClassification: ["CWE-1258"] 
   Language: "Not Language-Specific"
   Technologies: "Not Technology-Specific"
-  CAPEC: [150, 204, 37, 545]
+  VulnerabilityClassification: [150, 204, 37, 545]
   Threat: "Collect Data from Common Resource Locations, Lifting Sensitive Data Embedded in Cache, Retrieve Embedded Sensitive Data, Pull Data from System Resources"
   Assertions: |-  
   Design:  
@@ -1081,7 +1081,7 @@
   WeaknessClassification: ["CWE-1259"]   
   Language: "Not Language-Specific"
   Technologies: "Not Technology-Specific"
-  CAPEC: [121, 681]
+  VulnerabilityClassification: [121, 681]
   Threat: "Exploit Non-Production Interfaces, Exploitation of Improperly Controlled Hardware Security Identifiers"
   Assertions: |-  
   Design: 
@@ -1095,7 +1095,7 @@
   WeaknessClassification: ["CWE-1264"]   
   Language: "Not Language-Specific"
   Technologies: "Not Technology-Specific"
-  CAPEC: [233, 663]
+  VulnerabilityClassification: [233, 663]
   Threat: "Privilege Escalation, Exploitation of Transient Instruction Execution"
   Assertions: |-  
   Design: 

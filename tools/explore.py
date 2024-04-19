@@ -2,14 +2,14 @@ import yaml
 from sys import argv
 
 expected_fields = set([
-    "ID", "Plain", "Threat", "CWE", "CAPEC", "Assertions", "Design", "Origin", "Reference", "Tool"
+    "ID", "Plain", "Threat", "WeaknessClassification", "VulnerabilityClassification", "Assertions", "Design", "Origin", "Reference", "Tool"
 ])
 expected_types = {
     "ID": int, 
     "Plain": str, 
     "Threat": str, 
-    "CWE": list, 
-    "CAPEC": list, 
+    "WeaknessClassification": list, 
+    "VulnerabilityClassification": list, 
     "Assertions": str, 
     "Design": str, 
     "Origin": str, 
@@ -52,14 +52,14 @@ def load_validate(path:str, verbose:bool=False):
             if (verbose):
                 print(f"Info: Extra fields {extra} found (@ ID = `{id}`)")
         # Check the data types for fields that are lists
-        if type(record["CAPEC"]) == list:
-            for capec_id in record["CAPEC"]:
-                if type(capec_id) != int:
-                    print(f"Warning: Expected integer for CAPEC ID, found {capec_id} (@ ID = `{id}`)")
-        if type(record["CWE"]) == list:
-            for cwe_id in record["CWE"]:
-                if type(cwe_id) != int:
-                    print(f"Warning: Expected integer for CWE ID, found {cwe_id} (@ ID = `{id}`)")
+        if type(record["VulnerabilityClassification"]) == list:
+            for vulnerability_id in record["VulnerabilityClassification"]:
+                if type(vulnerability_id) != int:
+                    print(f"Warning: Expected integer for VulnerabilityClassification ID, found {vulnerability_id} (@ ID = `{id}`)")
+        #if type(record["WeaknessClassification"]) == list:
+        #    for weakness_id in record["WeaknessClassification"]:
+        #        if type(weakness_id) != int:
+        #            print(f"Warning: Expected integer for weakness ID, found {weakness_id} (@ ID = `{id}`)")
     return root
 
 if __name__ == "__main__":
