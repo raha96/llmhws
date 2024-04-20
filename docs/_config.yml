@@ -29,8 +29,8 @@ url: "https://github.com/raha96/llmhws/" # the base hostname & protocol for your
 
 # Build settings
 theme: minima
-plugins:
-  - jekyll-feed
+#plugins:
+#  - jekyll-feed
 
 # Exclude from processing.
 # The following items will not be processed, by default.
