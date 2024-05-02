@@ -1,0 +1,76 @@
+Design,Test #,Prompt Verbosity,# of missing Lines,ChatGPT3.5-R1-Syntax,ChatGPT3.5-R1-FPV,ChatGPT3.5-R2-Syntax,ChatGPT3.5-R2-FPV,ChatGPT3.5-R3-Syntax,ChatGPT3.5-R3-FPV,ChatGPT3.5-R4-Syntax,ChatGPT3.5-R4-FPV,ChatGPT3.5-R5-Syntax,ChatGPT3.5-R5-FPV,Codellama-R1-Syntax,Codellama-R1-FPV,Codellama-R2-Syntax,Codellama-R2-FPV,Codellama-R3-Syntax,Codellama-R3-FPV,Codellama-R4-Syntax,Codellama-R4-FPV,Codellama-R5-Syntax,Codellama-R5-FPV
+REM021,Test 1,L,2,✓,Passed,Compilation failure,✗,✓,Passed,✓,Passed,✓,Passed,No Code,✗,No Code,✗,No Code,✗,No Code,✗,Compilation failure,✗
+REM021,Test 2,L,24,✓,Failed,✓,Passed,✓,Failed,✓,Passed,✓,Failed,No Code,✗,No Code,✗,Compilation failure,✗,No Code,✗,No Code,✗
+REM021,Test 3,L,25,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,No Code,✗,Compilation failure,✗,No Code,✗,No Code,✗,No Code,✗
+REM021,Test 4,M,2,✓,Passed,✓,Failed,✓,Passed,✓,Passed,✓,Passed,No Code,✗,No Code,✗,No Code,✗,No Code,✗,Compilation failure,✗
+REM021,Test 5,M,24,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,No Code,✗,No Code,✗,No Code,✗,Compilation failure,✗,No Code,✗
+REM021,Test 6,M,25,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,No Code,✗,No Code,✗,Compilation failure,✗,No Code,✗,No Code,✗
+REM021,Test 7,H,2,✓,Failed,✓,Passed,✓,No Cover,✓,Passed,✓,Failed,No Code,✗,No Code,✗,Compilation failure,✗,No Code,✗,No Code,✗
+REM021,Test 8,H,24,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,Compilation failure,✗,Compilation failure,✗,No Code,✗,No Code,✗,Compilation failure,✗
+REM021,Test 9,H,25,✓,Passed,Compilation failure,✗,✓,Passed,✓,Passed,✓,Passed,No Code,✗,No Code,✗,No Code,✗,Compilation failure,✗,No Code,✗
+REM031,Test 1,L,1,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Failed (Cover: Passed),Compilation failure,✗,Compilation failure,✗,Pure text,✗,Pure text,✗,Compilation failure,✗
+REM031,Test 2,L,3,✓,Failed,Compilation failure,✗,✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),Compilation failure,✗,Incomplete code,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM031,Test 3,L,5,Compilation failure,✗,✓,Failed,✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Pure text,✗,Compilation failure,✗
+REM031,Test 4,L,7,✓,Failed,Compilation failure,✗,Compilation failure,✗,✓,Failed (Cover: Passed),Compilation failure,✗,Incomplete code,✗,Pure text,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM031,Test 5,M,1,Compilation failure,✗,✓,Passed,Compilation failure,✗,✓,Passed (Cover: Failed),✓,Passed (Cover: Failed),Compilation failure,✗,Pure text,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM031,Test 6,M,3,✓,Failed,✓,Failed,Compilation failure,✗,✓,Failed (Cover: Passed),Compilation failure,✗,Compilation failure,✗,Pure text,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM031,Test 7,M,5,Compilation failure,✗,Compilation failure,✗,✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),Compilation failure,✗,Compilation failure,✗,Pure text,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM031,Test 8,M,7,✓,Failed,✓,Failed,Compilation failure,✗,✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM031,Test 9,H,1,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed ,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Pure text,✗
+REM031,Test 10,H,3,Compilation failure,✗,✓,Failed,✓,Failed (Cover: Passed),Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Pure text,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM031,Test 11,H,5,✓,Failed,Compilation failure,✗,✓,Failed (Cover: Passed),Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Pure text,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM031,Test 12,H,7,✓,Failed,✓,Failed,Compilation failure,✗,✓,Passed,✓,Failed (Cover: Passed),Incomplete code,✗,Pure text,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM041,Test 1,L,1,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,Pure text,✗,Compilation failure,✗,Pure text,✗,Compilation failure,✗,Pure text,✗
+REM041,Test 2,L,2,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,Compilation failure,✗,Compilation failure,✗,Pure text,✗,Compilation failure,✗,Compilation failure,✗
+REM041,Test 3,L,3,✓,Passed (Cover: Failed),✓,Passed (Cover: Failed),✓,Passed (Cover: Failed),✓,Passed (Cover: Failed),✓,Passed (Cover: Failed),Pure text,✗,Pure text,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM041,Test 4,M,1,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,Pure text,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM041,Test 5,M,2,✓,Passed,Compilation failure,✗,✓,Passed,✓,Passed,✓,Passed,Compilation failure,✗,Pure text,✗,Incomplete code,✗,Pure text,✗,Compilation failure,✗
+REM041,Test 6,M,3,✓,Passed (Cover: Failed),✓,Passed (Cover: Failed),Compilation failure,✗,Compilation failure,✗,✓,Passed (Cover: Failed),Compilation failure,✗,Compilation failure,✗,Pure text,✗,Compilation failure,✗,Compilation failure,✗
+REM041,Test 7,H,1,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,Pure text,✗,Compilation failure,✗,Compilation failure,✗,Incomplete code,✗,Compilation failure,✗
+REM041,Test 8,H,2,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM041,Test 9,H,3,✓,Passed (Cover: Failed),✓,Passed (Cover: Failed),✓,Passed (Cover: Failed),✓,Passed (Cover: Failed),✓,Passed (Cover: Failed),Incomplete code,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM042,Test 1,L,3,✓,Passed (Cover: Failed),✓,Passed (Cover: Failed),✓,Passed,✓,Passed,✓,Passed,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Pure text,✗,Compilation failure,✗
+REM042,Test 2,L,8,✓,Passed ,✓,Passed,✓,Passed,✓,Passed,✓,Passed,Compilation failure,✗,Compilation failure,✗,Pure text,✗,Compilation failure,✗,Compilation failure,✗
+REM042,Test 3,L,10,✓,Passed ,✓,Failed,✓,Failed,Compilation failure,✗,✓,Failed (Cover: Passed),Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Pure text,✗,Pure text,✗
+REM042,Test 4,M,3,✓,Passed ,✓,Passed,✓,Passed,✓,Passed,✓,Failed (Cover: Passed),Compilation failure,✗,Compilation failure,✗,Pure text,✗,Compilation failure,✗,Compilation failure,✗
+REM042,Test 5,M,8,✓,Passed ,✓,Failed,✓,Passed,✓,Failed (Cover: Passed),✓,Passed,Compilation failure,✗,Compilation failure,✗,Pure text,✗,Compilation failure,✗,Compilation failure,✗
+REM042,Test 6,M,10,✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),✓,Passed,✓,3 out of 5 Passed ,✓,Passed,Compilation failure,✗,Incomplete code,✗,Incomplete code,✗,Compilation failure,✗,Pure text,✗
+REM042,Test 7,H,3,✓,Passed (Cover: Failed),✓,Passed,✓,Passed,✓,Passed,✓,Passed,Compilation failure,✗,Compilation failure,✗,Pure text,✗,Compilation failure,✗,Pure text,✗
+REM042,Test 8,H,8,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,Compilation failure,✗,Pure text,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM042,Test 9,H,10,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,Compilation failure,✗,Compilation failure,✗,Pure text,✗,Incomplete code,✗,Compilation failure,✗
+REM043,Test 1,L,2,✓,Passed,✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),Compilation failure,✗,Incomplete code,✗,Pure text,✗,Incomplete code,✗,Compilation failure,✗
+REM043,Test 2,L,8,✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM043,Test 3,L,10,✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),Compilation failure,✗,✓,Failed (Cover: Passed),Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM043,Test 4,M,2,✓,Passed,✓,Failed (Cover: Passed),✓,Passed (Cover: FAiled),✓,Passed,✓,Failed (Cover: Passed),Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Pure text,✗,Compilation failure,✗
+REM043,Test 5,M,8,✓,Failed (Cover: Passed),✓,Passed,✓,Passed,✓,Failed (Cover: Passed),✓,Passed,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM043,Test 6,M,10,✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),Compilation failure,✗,✓,3 out of 6 Passed ,✓,Failed (Cover: Passed),Pure text,✗,Compilation failure,✗,Compilation failure,✗,Incomplete code,✗,Compilation failure,✗
+REM043,Test 7,H,2,✓,Failed,✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),Pure text,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM043,Test 8,H,8,✓,1 out of 3 Passed (1 Cover: Failed),✓,1 out of 3 Passed (1 Cover: Failed),✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),✓,Failed (Cover: Passed),Compilation failure,✗,Pure text,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM043,Test 9,H,10,✓,4 out of 7 Passed (1 Cover: Failed),Compilation failure,✗,✓,Failed (Cover: Passed),Compilation failure,✗,✓,Failed (Cover: Passed),Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗,Compilation failure,✗
+REM051,Test 1,L,1,✓,Passed,✓,Failed,✓,Failed,✓,Failed,✓,Failed,No Code,✗,No Code,✗,No Code,✗,No Code,✗,No Code,✗
+REM051,Test 2,L,1,✓,No Cover,✓,Unverified,✓,No Cover,✓,No Cover,✓,No Cover,No Code,✗,No Code,✗,No Code,✗,No Code,✗,No Code,✗
+REM051,Test 3,L,7,✓,No Cover,✓,No Cover,✓,Passed,✓,No Cover,✓,No Cover,No Code,✗,No Code,✗,No Code,✗,No Code,✗,No Code,✗
+REM051,Test 4,M,1,✓,Failed,✓,Passed,✓,Passed,✓,Failed,✓,Passed,Compilation failure,✗,No Code,✗,No Code,✗,No Code,✗,No Code,✗
+REM051,Test 5,M,1,✓,Passed,✓,Unverified,✓,No Cover,✓,No Cover,✓,Failed,No Code,✗,No Code,✗,No Code,✗,No Code,✗,No Code,✗
+REM051,Test 6,M,7,✓,Passed,✓,No Cover,✓,No Cover,✓,No Cover,✓,No Cover,No Code,✗,No Code,✗,Compilation failure,✗,No Code,✗,No Code,✗
+REM051,Test 7,H,1,✓,Passed,✓,Failed,✓,Failed,✓,Failed,✓,Failed,No Code,✗,No Code,✗,No Code,✗,No Code,✗,No Code,✗
+REM051,Test 8,H,1,✓,Passed,✓,No Cover,✓,Passed,✓,No Cover,✓,Passed,No Code,✗,No Code,✗,No Code,✗,No Code,✗,No Code,✗
+REM051,Test 9,H,7,✓,Failed,✓,No Cover,✓,Failed,✓,No Cover,✓,No Cover,No Code,✗,No Code,✗,No Code,✗,No Code,✗,No Code,✗
+RMI041,Test 1,L,1,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,No Code,✗,✓,Passed,✓,Passed,✓,Passed,Compilation failure,✗
+RMI041,Test 2,L,1,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,Compilation failure,✗,✓,Passed,✓,Passed,✓,Passed
+RMI041,Test 3,L,2,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,No Code,✗,No modification,✗,No Code,✗,No Code,✗,✓,Passed
+RMI041,Test 4,L,5,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,Compilation failure,✗,✓,Passed,✓,Passed
+RMI041,Test 5,L,5,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,No Code,✗,✓,Passed,No Code,✗,No Code,✗,✓,Passed
+RMI041,Test 6,L,15,✓,Passed,✓,Passed,✓,Passed,Compilation failure,✗,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed
+RMI041,Test 7,M,1,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,No Code,✗,No Code,✗,No Code,✗,No Code,✗,✓,Passed
+RMI041,Test 8,M,1,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,No Code,✗,No Code,✗,✓,Passed,✓,Passed,✓,Passed
+RMI041,Test 9,M,2,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,No Code,✗,✓,Passed
+RMI041,Test 10,M,5,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,No Code,✗,✓,Passed,✓,Passed
+RMI041,Test 11,M,5,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,No Code,✗,No Code,✗,✓,Passed,✓,Passed,No Code,✗
+RMI041,Test 12,M,15,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed
+RMI041,Test 13,H,1,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,No Code,✗,✓,Passed,✓,Passed,No Code,✗
+RMI041,Test 14,H,1,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,No Code,✗,✓,Passed,No Code,✗,No Code,✗,✓,Passed
+RMI041,Test 15,H,2,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,No Code,✗,✓,Passed,No Code,✗
+RMI041,Test 16,H,5,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,No Code,✗,✓,Passed,No Code,✗,✓,Passed
+RMI041,Test 17,H,5,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,No Code,✗,No Code,✗,No Code,✗,No Code,✗,No Code,✗
+RMI041,Test 18,H,15,✓,Passed,✓,Passed,✓,Passed,✓,Passed,✓,Passed,Compilation failure,✗,✓,Passed,✓,Passed,✓,Passed,No Code,✗
