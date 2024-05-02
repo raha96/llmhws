@@ -5,6 +5,10 @@
 layout: home
 ---
 
+## Summary
+
+![Syntax Check Pass Rate for ChatGPT 3.5](./assets/syntax-pass-rate.png)
+
 ## State of Benchmarking - ChatGPT 3.5
 
 | Design | Test # | Verbosity | # Lines | #1 - Compilation | #1 - Assertion | #2 - Compilation | #2 - Assertion | #3 - Compilation | #3 - Assertion | #4 - Compilation | #4 - Assertion | #5 - Compilation | #5 - Assertion |
