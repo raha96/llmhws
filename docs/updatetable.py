@@ -80,7 +80,11 @@ def updatetable():
             ])
     return chatgpt_table, codellama_table
 
-def updategraphs(table):
+def updategraphs(table:list, syntax:bool, path:str, title:str):
+    if syntax:
+        querystr = "Five Attempts - Syntax"
+    else:
+        querystr = "Five Attempts - Assertion"
     titles = table[0]
     designs = []
     syntax_success_dict = {"Low": {}, "Medium": {}, "High": {}}
@@ -94,7 +98,7 @@ def updategraphs(table):
             syntax_success_dict["Medium"][Design] = (0, 0)
             syntax_success_dict["High"][Design] = (0, 0)
         olds = syntax_success_dict[Verbosity][Design]
-        syntax_success_dict[Verbosity][Design] = (olds[0] + int(record["Five Attempts - Syntax"][:-1]), olds[1] + 1)
+        syntax_success_dict[Verbosity][Design] = (olds[0] + int(record[querystr][:-1]), olds[1] + 1)
     syntax_success = {"Low": [], "Medium": [], "High": []}
     for design in designs:
         for verbosity in syntax_success:
@@ -113,13 +117,13 @@ def updategraphs(table):
         #ax.bar_label(rects, padding=3)
         multiplier += 1
     #ax.set_ylabel("Syntax Check Success Rate (%)")
-    ax.set_title("Syntax Check Success Rate - ChatGPT 3.5 (%)", y=1.16)
+    ax.set_title(title, y=1.16)
     ax.set_xticks(x + width, designs)
     ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.22), ncols=len(designs))
     ax.set_ylim(0, 100)
     fig.set_figheight(2.4)
     fig.set_figwidth(6.4)
-    plt.savefig("assets/syntax-pass-rate.png")
+    plt.savefig(path)
 
 def updatemd(chatgpt_table, codellama_table):
     linebuf = []
@@ -149,5 +153,8 @@ def updatemd(chatgpt_table, codellama_table):
 
 
 chatgpt_table, codellama_table = updatetable()
-updategraphs(chatgpt_table)
+updategraphs(chatgpt_table, syntax=True, path="assets/syntax-pass-chatgpt.png", title="Syntax Check Success Rate - ChatGPT 3.5 (%)")
+updategraphs(chatgpt_table, syntax=False, path="assets/assertion-pass-chatgpt.png", title="Assertion Success Rate - ChatGPT 3.5 (%)")
+updategraphs(codellama_table, syntax=True, path="assets/syntax-pass-codellama.png", title="Syntax Check Success Rate - Codellama (%)")
+updategraphs(codellama_table, syntax=False, path="assets/assertion-pass-codellama.png", title="Assertion Success Rate - Codellama (%)")
 updatemd(chatgpt_table, codellama_table)
