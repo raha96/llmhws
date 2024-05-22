@@ -2,9 +2,9 @@
   Plain: >-
     In a system-on-chip (SoC), software will commonly access the peripherals through a memory-mapped register 
     interface. Thus, software can access only certain registers with respect to their privilege level hardcoded 
-    in the design. However, through the accessible register interface, malicious software could tamper the 
-    hardware data. This threat could allow any adversary to exploit a weakness enabling them to elevate their 
-    privilege and perform an action that they are not supposed to be authorized to perform. 
+    in the design. However, through the accessible register interface, malicious software could tamper the hardware 
+    data. This threat could allow any adversary to exploit a weakness enabling them to elevate their privilege 
+    and perform an action that they are not supposed to be authorized to perform. 
   Threat: "Software"
   WeaknessClassification: ["CWE-1198"]
   VulnerabilityClassification: [233]
@@ -34,9 +34,9 @@
   Plain: >-
     In a system-on-chip (SoC), software will commonly access the peripherals through a memory-mapped register 
     interface. Thus, software can access only certain registers with respect to their privilege level hardcoded 
-    in the design. However, through the accessible register interface, malicious software could tamper the 
-    hardware data. This threat could allow any adversary to exploit a weakness enabling them to elevate their 
-    privilege and perform an action that they are not supposed to be authorized to perform. 
+    in the design. However, through the accessible register interface, malicious software could tamper the hardware 
+    data. This threat could allow any adversary to exploit a weakness enabling them to elevate their privilege 
+    and perform an action that they are not supposed to be authorized to perform. 
   Threat: "Software"
   WeaknessClassification: ["CWE-266"]
   VulnerabilityClassification: [233]
@@ -66,9 +66,9 @@
   Plain: >-
     In a system-on-chip (SoC), software will commonly access the peripherals through a memory-mapped register 
     interface. Thus, software can access only certain registers with respect to their privilege level hardcoded 
-    in the design. However, through the accessible register interface, malicious software could tamper the 
-    hardware data. This threat could allow any adversary to exploit a weakness enabling them to elevate their 
-    privilege and perform an action that they are not supposed to be authorized to perform. 
+    in the design. However, through the accessible register interface, malicious software could tamper the hardware 
+    data. This threat could allow any adversary to exploit a weakness enabling them to elevate their privilege 
+    and perform an action that they are not supposed to be authorized to perform. 
   Threat: "Software"
   WeaknessClassification: ["CWE-1198"]
   VulnerabilityClassification: [233]
@@ -97,10 +97,10 @@
 - ID: 3
   Plain: >-
     In a system-on-chip (SoC), the software will commonly access the peripherals through a memory-mapped register 
-    interface. Thus, the software can access only certain registers with respect to their privilege level 
-    hardcoded in the design. However, through the accessible register interface, malicious software could tamper 
-    with the hardware data. During the execution of an instruction, the privilege level should not be altered. 
-    Changing the privilege level during this can lead to access control violations and possible integrity loss. 
+    interface. Thus, the software can access only certain registers with respect to their privilege level hardcoded 
+    in the design. However, through the accessible register interface, malicious software could tamper with the 
+    hardware data. During the execution of an instruction, the privilege level should not be altered. Changing 
+    the privilege level during this can lead to access control violations and possible integrity loss. 
   Threat: "Software"
   WeaknessClassification: ["CWE-1272"]
   VulnerabilityClassification: [233]
@@ -115,11 +115,11 @@
 - ID: 4
   Plain: >-
     In a system-on-chip (SoC), the software will commonly access the peripherals through a memory-mapped register 
-    interface. Thus, the software can access only certain registers with respect to their privilege level 
-    hardcoded in the design. However, through the accessible register interface, malicious software could tamper 
-    with the hardware data. The memory management unit (MMU) determines the memory page access permission for 
-    different privilege levels. This vulnerability allows any attacker to access supervisor or machine-level 
-    memory pages from user-level privilege mode without generating any data access error. 
+    interface. Thus, the software can access only certain registers with respect to their privilege level hardcoded 
+    in the design. However, through the accessible register interface, malicious software could tamper with the 
+    hardware data. The memory management unit (MMU) determines the memory page access permission for different 
+    privilege levels. This vulnerability allows any attacker to access supervisor or machine-level memory pages 
+    from user-level privilege mode without generating any data access error. 
   Threat: "Software"
   WeaknessClassification: ["CWE-1262"]
   VulnerabilityClassification: [233]
@@ -136,12 +136,12 @@
 - ID: 5
   Plain: >-
     In a system-on-chip (SoC), the software will commonly access the peripherals through a memory-mapped register 
-    interface. Thus, the software can access only certain registers with respect to their privilege level 
-    hardcoded in the design. However, through the accessible register interface, malicious software could tamper 
-    with the hardware data. The physical memory protection (PMP) unit takes care of the address translation for 
-    the physical memory locations inside the processor. If there is any mismatch during this process, no physical 
-    memory access is given to the lower privilege levels. However, this vulnerability can enable an attacker to 
-    gain the memory access even with lower privilege levels (S mode and U mode). 
+    interface. Thus, the software can access only certain registers with respect to their privilege level hardcoded 
+    in the design. However, through the accessible register interface, malicious software could tamper with the 
+    hardware data. The physical memory protection (PMP) unit takes care of the address translation for the physical 
+    memory locations inside the processor. If there is any mismatch during this process, no physical memory access 
+    is given to the lower privilege levels. However, this vulnerability can enable an attacker to gain the memory 
+    access even with lower privilege levels (S mode and U mode). 
   Threat: "Software"
   WeaknessClassification: ["CWE-1262"]
   VulnerabilityClassification: [233]
@@ -157,8 +157,8 @@
 
 - ID: 6
   Plain: >-
-    Encryption key should not be observable from test and debug ports.
-  Threat: ""
+    Encryption key should not be observable from test and debug ports. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold SPV"
@@ -171,7 +171,7 @@
 - ID: 7
   Plain: >-
     FSM State flip-flop should not be controllable and observable from the additional test and debug ports. 
-  Threat: ""
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold SPV"
@@ -184,8 +184,9 @@
 
 - ID: 8
   Plain: >-
-    For a certain FSM state encoding scheme, the Fault Injection Feasibility (FIF) metric should not have the value 1.
-  Threat: ""
+    For a certain FSM state encoding scheme, the Fault Injection Feasibility (FIF) metric should not have the 
+    value 1. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -200,8 +201,9 @@
 
 - ID: 9
   Plain: >-
-    To resist fault injection vulnerability, FSM encoding of encryption algorithm should be implemented in such a way that an FSM state cannot be accessed from a don’t care state. 
-  Threat: ""
+    To resist fault injection vulnerability, FSM encoding of encryption algorithm should be implemented in such 
+    a way that an FSM state cannot be accessed from a don’t care state. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -219,8 +221,9 @@
 
 - ID: 10
   Plain: >-
-    Final_round of AES should only be accessed from the do_round and should not be accessed from any don’t care states.
-  Threat: ""
+    Final_round of AES should only be accessed from the do_round and should not be accessed from any don’t care 
+    states. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -238,7 +241,7 @@
 - ID: 11
   Plain: >-
     RESULT state should only be accessed from SQR state and should not be accessed from any don’t care states. 
-  Threat: ""
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -255,8 +258,9 @@
 
 - ID: 12
   Plain: >-
-    A reset signal should be enabled for the scan flip-flops whenever there is a switch from the functional mode to the test mode.
-  Threat: ""
+    A reset signal should be enabled for the scan flip-flops whenever there is a switch from the functional mode 
+    to the test mode. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -271,10 +275,10 @@
 
 - ID: 13
   Plain: >-
-    Timing violation, computational, or execution fault can result in erroneous state transition of FSM, which can be exploited to perform 
-    fault injection attack. When state transition takes place between two consecutive unprotected states, then hamming distance between 
-    the encoded states should be 1.
-  Threat: ""
+    Timing violation, computational, or execution fault can result in erroneous state transition of FSM, which 
+    can be exploited to perform fault injection attack. When state transition takes place between two consecutive 
+    unprotected states, then hamming distance between the encoded states should be 1. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -309,8 +313,9 @@
 
 - ID: 14
   Plain: >-
-    All unused states of an FSM should be handled through default statement which ensures the system to be in secure state.
-  Threat: ""
+    All unused states of an FSM should be handled through default statement which ensures the system to be in 
+    secure state. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -325,9 +330,9 @@
 
 - ID: 15
   Plain: >-
-    Control and status register’s contents should be copied to/from any general-purpose registers based on the access 
-    type (read-only, write-only, read-write etc.) of each bit of the control and status register.
-  Threat: ""
+    Control and status register’s contents should be copied to/from any general-purpose registers based on the 
+    access type (read-only, write-only, read-write etc.) of each bit of the control and status register. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold CSR"
@@ -339,9 +344,9 @@
 
 - ID: 16
   Plain: >-
-    Privilege level of the load and store module should not be changed if the previous privilege level of the host 
-    processor was set higher than current privilege level.
-  Threat: ""
+    Privilege level of the load and store module should not be changed if the previous privilege level of the 
+    host processor was set higher than current privilege level. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -360,9 +365,10 @@
 
 - ID: 17
   Plain: >-
-    Load-Store Unit (LSU) should not accept access requests if more outstanding transactions are requested than its 
-    depth. (The depth of an LSU is the capability of handling the number of transactions that are in queue to be executed). 
-  Threat: ""
+    Load-Store Unit (LSU) should not accept access requests if more outstanding transactions are requested than 
+    its depth. (The depth of an LSU is the capability of handling the number of transactions that are in queue 
+    to be executed). 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -382,7 +388,7 @@
 - ID: 18
   Plain: >-
     The cipher text ready signal should be low when encryption key is loaded to an AES. 
-  Threat: ""
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -403,7 +409,7 @@
 - ID: 19
   Plain: >-
     AES key should not be shared with other modules. 
-  Threat: ""
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -419,7 +425,7 @@
 - ID: 20
   Plain: >-
     Control registers should not be observable from the output signals. 
-  Threat: ""
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold SPV"
@@ -432,7 +438,7 @@
 - ID: 21
   Plain: >-
     The cipher-text ready signal should be only asserted from the final round state. 
-  Threat: ""
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -447,8 +453,8 @@
 
 - ID: 22
   Plain: >-
-    ‘Ready’ signal should be asserted after certain cycles of the INITIAL_ROUND.
-  Threat: ""
+    ‘Ready’ signal should be asserted after certain cycles of the INITIAL_ROUND. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -464,7 +470,7 @@
 - ID: 23
   Plain: >-
     DO_ROUND must occur before the FINAL_ROUND. 
-  Threat: ""
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -480,7 +486,7 @@
 - ID: 24
   Plain: >-
     FINAL_ROUND should only be accessed from DO_ROUND. 
-  Threat: ""
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -496,7 +502,7 @@
 - ID: 25
   Plain: >-
     AES Key should not flow to the ciphertext when the plain text matches with a specific value. 
-  Threat: ""
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold SPV"
@@ -509,8 +515,9 @@
 
 - ID: 26
   Plain: >-
-    To avoid side-channel attacks, intermediate variables should not be relevant with a portion (# = k) of key bits (e.g., 1 < k ≤ 32) and plaintext bits (# = m, m > 0)
-  Threat: ""
+    To avoid side-channel attacks, intermediate variables should not be relevant with a portion (# = k) of key 
+    bits (e.g., 1 < k ≤ 32) and plaintext bits (# = m, m > 0) 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold SPV"
@@ -532,8 +539,8 @@
 
 - ID: 27
   Plain: >-
-    `Finished` signal should be high at `RESULT` state.
-  Threat: ""
+    `Finished` signal should be high at `RESULT` state. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -548,8 +555,8 @@
 
 - ID: 28
   Plain: >-
-    Control registers should not be observable from output signal.
-  Threat: ""
+    Control registers should not be observable from output signal. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold SPV"
@@ -562,7 +569,7 @@
 - ID: 29
   Plain: >-
     `RESULT` state can only be accessed from `SQR` state. 
-  Threat: ""
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -578,7 +585,7 @@
 - ID: 30
   Plain: >-
     `MULT` and `SQR` both states must occur before reaching the `RESULT` state. 
-  Threat: ""
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -593,8 +600,8 @@
 
 - ID: 31
   Plain: >-
-    `finished/ready` signal should be high after certain clock cycles of the initial state.
-  Threat: ""
+    `finished/ready` signal should be high after certain clock cycles of the initial state. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -609,8 +616,8 @@
 
 - ID: 32
   Plain: >-
-    `valid` signal should be high only at the final round.
-  Threat: ""
+    `valid` signal should be high only at the final round. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -626,7 +633,7 @@
 - ID: 33
   Plain: >-
     The number of cycles between the initial and final round of the encryption operation should always be constant. 
-  Threat: ""
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -641,10 +648,10 @@
 
 - ID: 34
   Plain: >-
-    Random number generators should create strong primes so that modulus p and q are not close to each other or should not be easily 
-    factorizable. When the primes are generated using random number generators, it should be checked that they are not factorizable. 
-    The hamming distance between the modulus should be at least 50%.
-  Threat: ""
+    Random number generators should create strong primes so that modulus p and q are not close to each other or 
+    should not be easily factorizable. When the primes are generated using random number generators, it should 
+    be checked that they are not factorizable. The hamming distance between the modulus should be at least 50%. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -659,8 +666,9 @@
 
 - ID: 35
   Plain: >-
-    When the primes are generated using random number generators, it should be checked that the modulus are not generated from first entropy.
-  Threat: ""
+    When the primes are generated using random number generators, it should be checked that the modulus are not 
+    generated from first entropy. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -679,8 +687,9 @@
 
 - ID: 36
   Plain: >-
-    If private exponent (d) is lower than a threshold t1, the public exponent (e) should not be higher than a threshold t2. 
-  Threat: ""
+    If private exponent (d) is lower than a threshold t1, the public exponent (e) should not be higher than a 
+    threshold t2. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -695,14 +704,14 @@
 
 - ID: 37
   Plain: >-
-    If the output of an IP behaves differently or sends different responses under different circumstances in a way 
-    that is observable to an unauthorized actor, it can expose security-relevant information about the state of 
-    the product, such as whether a particular operation was successful or not. The discrepancy of design behavior 
-    should not be observable for different inputs.
-  Threat: ""
+    If the output of an IP behaves differently or sends different responses under different circumstances in a 
+    way that is observable to an unauthorized actor, it can expose security-relevant information about the state 
+    of the product, such as whether a particular operation was successful or not. The discrepancy of design behavior 
+    should not be observable for different inputs. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
-  Tool: ""
+  Tool: 
   Assertions: |-
     cover {(ld==1) ##1 (key_r == text_in_r) ## [1:$] done == 1}
     cover {(ld==1) ##1 (key_r != text_in_r) ## [1:$] done == 1}
@@ -712,10 +721,9 @@
 
 - ID: 38
   Plain: >-
-    All masters and slave IPs integrated on the bus must follow a certain sequence of operations 
-    according to the bus protocol to avoid desynchronization between data and permission checking 
-    logic.
-  Threat: ""
+    All masters and slave IPs integrated on the bus must follow a certain sequence of operations according to 
+    the bus protocol to avoid desynchronization between data and permission checking logic. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -776,8 +784,8 @@
 
 - ID: 39
   Plain: >-
-    There should be no interference between master and slave when the master is communicating   with other slaves.
-  Threat: ""
+    There should be no interference between master and slave when the master is communicating with other slaves. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -817,8 +825,8 @@
 
 - ID: 40
   Plain: >-
-    Once the write-once registers are programmed, they should become read only.
-  Threat: ""
+    Once the write-once registers are programmed, they should become read only. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -836,8 +844,9 @@
 
 - ID: 41
   Plain: >-
-    Illegal or undocumented instruction can be executed due to weakness in translating specification to implementation. According to RISC-V specification, decoder should ignore rs1 and rd1 field while executing an (imm) instruction.
-  Threat: ""
+    Illegal or undocumented instruction can be executed due to weakness in translating specification to implementation. 
+    According to RISC-V specification, decoder should ignore rs1 and rd1 field while executing an (imm) instruction. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -852,7 +861,7 @@
 - ID: 42
   Plain: >-
     Ensure all state registers are initialized during reset. 
-  Threat: ""
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -867,8 +876,9 @@
 
 - ID: 43
   Plain: >-
-    The privilege level of the core must be in user specific mode after reset otherwise any other privilege level can pave the way to unauthorized access.
-  Threat: ""
+    The privilege level of the core must be in user specific mode after reset otherwise any other privilege level 
+    can pave the way to unauthorized access. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -884,7 +894,7 @@
 - ID: 44
   Plain: >-
     Privilege level of the core must be restored to a specific privilege level after processing an interrupt request. 
-  Threat: ""
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -899,8 +909,9 @@
 
 - ID: 45
   Plain: >-
-    (REWRITE THIS) It should be checked in design time, whether program counter’s value is writeable from debug access port or not during HALT.
-  Threat: ""
+    (REWRITE THIS) It should be checked in design time, whether program counter’s value is writeable from debug 
+    access port or not during HALT. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold SPV"
@@ -912,8 +923,9 @@
 
 - ID: 46
   Plain: >-
-    Program Counter’s value should not be readable through Debug Access Port (DAP) when a processor is not in HALT mode debugging.
-  Threat: ""
+    Program Counter’s value should not be readable through Debug Access Port (DAP) when a processor is not in 
+    HALT mode debugging. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold SPV"
@@ -925,8 +937,8 @@
 
 - ID: 47
   Plain: >-
-    Privileged memory (data memory/physical memory) access should be denied in HALT operation through DAP.
-  Threat: ""
+    Privileged memory (data memory/physical memory) access should be denied in HALT operation through DAP. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold SPV"
@@ -940,10 +952,10 @@
 - ID: 48
   Plain: >-
     During Debugging, control and status registers should be read only. 
-  Threat: ""
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
-  Tool: ""
+  Tool: 
   Assertions: |-
     cover {{debug_req_i && id_stage_i.controller_i.debug_mode_q} ##[1:$] {cs_registers_i.csr_op_i == 2'b01}}
   Design: "Trust-Hub RTD015"
@@ -953,7 +965,7 @@
 - ID: 49
   Plain: >-
     Debugger’s accessibility should be authorized before accepting debug request. 
-  Threat: ""
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold SPV"
@@ -966,7 +978,7 @@
 - ID: 150
   Plain: >-
     Debug should only be initialized in authorized order. 
-  Threat: ""
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -979,8 +991,9 @@
 
 - ID: 151
   Plain: >-
-    Debug interface should not have access to the control registers associated with harvesting mechanism of a TRNG. 
-  Threat: ""
+    Debug interface should not have access to the control registers associated with harvesting mechanism of a 
+    TRNG. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold SPV"
@@ -992,8 +1005,8 @@
 
 - ID: 152
   Plain: >-
-    The biasedness of an entropy source of TRNG should be less than a threshold value.
-  Threat: ""
+    The biasedness of an entropy source of TRNG should be less than a threshold value. 
+  Threat: 
   WeaknessClassification: 
   VulnerabilityClassification: 
   Tool: "JasperGold"
@@ -1007,98 +1020,159 @@
   Reference: "https://trust-hub.org/downloads/resource/data/property-db/RTG021.zip"
 
 - ID: 50
-  Summary: "Insufficient Granularity of Access Control"
   Plain: >-
-    The product implements access controls via a policy or other feature with the intention to disable or restrict accesses (reads and/or writes) to assets in a system from untrusted agents. However, implemented access controls lack required granularity, which renders the control policy too broad because it allows accesses from unauthorized agents to the security-sensitive assets. 
-    Integrated circuits and hardware engines can expose accesses to assets (device configuration, keys, etc.) to trusted firmware or a software module (commonly set by BIOS/bootloader). This access is typically access-controlled. Upon a power reset, the hardware or system usually starts with default values in registers, and the trusted firmware (Boot firmware) configures the necessary access-control protection.
-    A common weakness that can exist in such protection schemes is that access controls or policies are not granular enough. This condition allows agents beyond trusted agents to access assets and could lead to a loss of functionality or the ability to set up the device securely. This further results in security risks from leaked, sensitive, key material to modification of device configuration.  
-  WeaknessClassification: ["CWE-1220"]
-  Language: "Not Language-Specific"
-  Technologies: "Not Technology-Specific"
-  VulnerabilityClassification: [1, 180]
+    The product implements access controls via a policy or other feature with the intention to disable or restrict 
+    accesses (reads and/or writes) to assets in a system from untrusted agents. However, implemented access controls 
+    lack required granularity, which renders the control policy too broad because it allows accesses from unauthorized 
+    agents to the security-sensitive assets. Integrated circuits and hardware engines can expose accesses to assets 
+    (device configuration, keys, etc.) to trusted firmware or a software module (commonly set by BIOS/bootloader). 
+    This access is typically access-controlled. Upon a power reset, the hardware or system usually starts with 
+    default values in registers, and the trusted firmware (Boot firmware) configures the necessary access-control 
+    protection. A common weakness that can exist in such protection schemes is that access controls or policies 
+    are not granular enough. This condition allows agents beyond trusted agents to access assets and could lead 
+    to a loss of functionality or the ability to set up the device securely. This further results in security 
+    risks from leaked, sensitive, key material to modification of device configuration. 
   Threat: "Accessing Functionality Not Properly Constrained by ACLs, Exploiting Incorrectly Configured Access Control Security Levels"
-  Assertions: 
+  WeaknessClassification: ["CWE-1220"]
+  VulnerabilityClassification: [1, 180]
+  Tool: 
+  Assertions: |-
+
   Design: 
   Origin: "CWE MITRE"
   Reference: "https://cwe.mitre.org/data/definitions/1220.html"
-  Observed Examples: CVE-2022-24985, CVE-2021-36934
-   
-- ID: 52
-  Summary: "Incorrect Register Defaults or Module Parameters"
-  Plain: >-
-    Hardware description language code incorrectly defines register defaults or hardware Intellectual Property (IP) parameters to insecure values.
-    Integrated circuits and hardware IP software programmable controls and settings are commonly stored in register circuits. These register contents have to be initialized at hardware reset to defined default values that are hard coded in the hardware description language (HDL) code of the hardware unit. Hardware descriptive languages also support definition of parameter variables, which can be defined in code during instantiation of the hardware IP module. Such parameters are generally used to configure a specific instance of a hardware IP in the design.
-    The system security settings of a hardware design can be affected by incorrectly defined default values or IP parameters. The hardware IP would be in an insecure state at power reset, and this can be exposed or exploited by untrusted software running on the system. Both register defaults and parameters are hardcoded values, which cannot be changed using software or firmware patches but must be changed in hardware silicon. Thus, such security issues are considerably more difficult to address later in the lifecycle. Hardware designs can have a large number of such parameters and register defaults settings, and it is important to have design tool support to check these settings in an automated way and be able to identify which settings are security sensitive.  
-  WeaknessClassification: ["CWE-1221"] 
-  Language: Verilog (Undetermined Prevalence), VHDL (Undetermined Prevalence)
+  Summary: "Insufficient Granularity of Access Control"
+  Language: "Not Language-Specific"
   Technologies: "Not Technology-Specific"
-  VulnerabilityClassification: [166] 
+  Observed Examples: "CVE-2022-24985, CVE-2021-36934"
+
+- ID: 52
+  Plain: >-
+    Hardware description language code incorrectly defines register defaults or hardware Intellectual Property 
+    (IP) parameters to insecure values. Integrated circuits and hardware IP software programmable controls and 
+    settings are commonly stored in register circuits. These register contents have to be initialized at hardware 
+    reset to defined default values that are hard coded in the hardware description language (HDL) code of the 
+    hardware unit. Hardware descriptive languages also support definition of parameter variables, which can be 
+    defined in code during instantiation of the hardware IP module. Such parameters are generally used to configure 
+    a specific instance of a hardware IP in the design. The system security settings of a hardware design can 
+    be affected by incorrectly defined default values or IP parameters. The hardware IP would be in an insecure 
+    state at power reset, and this can be exposed or exploited by untrusted software running on the system. Both 
+    register defaults and parameters are hardcoded values, which cannot be changed using software or firmware 
+    patches but must be changed in hardware silicon. Thus, such security issues are considerably more difficult 
+    to address later in the lifecycle. Hardware designs can have a large number of such parameters and register 
+    defaults settings, and it is important to have design tool support to check these settings in an automated 
+    way and be able to identify which settings are security sensitive. 
   Threat: "Force the System to Reset Values"
-  Assertions: |-  
+  WeaknessClassification: ["CWE-1221"]
+  VulnerabilityClassification: [166]
+  Tool: 
+  Assertions: |-
+
   Design: 
   Origin: "CWE MITRE"
   Reference: "https://cwe.mitre.org/data/definitions/1221.html"
+  Summary: "Incorrect Register Defaults or Module Parameters"
+  Language: "Verilog (Undetermined Prevalence), VHDL (Undetermined Prevalence)"
+  Technologies: "Not Technology-Specific"
   Observed Examples: 
-  
+
 - ID: 53
-  Summary: "Internal Asset Exposed to Unsafe Debug Access Level or State"
   Plain: >-
-    The product uses physical debug or test interfaces with support for multiple access levels, but it assigns the wrong debug access level to an internal asset, providing unintended access to the asset from untrusted debug agents.
-    Debug authorization can have multiple levels of access, defined such that different system internal assets are accessible based on the current authorized debug level. Other than debugger authentication (e.g., using passwords or challenges), the authorization can also be based on the system state or boot stage. For example, full system debug access might only be allowed early in boot after a system reset to ensure that previous session data is not accessible to the authenticated debugger.
-    If this protection mechanism does not ensure that internal assets have the correct debug access level during each boot stage or change in system state, an attacker could obtain sensitive information from the internal asset using a debugger.  
-  WeaknessClassification: ["CWE-1244"]  
-  Language: "Not Language-Specific"
-  Technologies: "Not Technology-Specific"
-  VulnerabilityClassification: [114] 
+    The product uses physical debug or test interfaces with support for multiple access levels, but it assigns 
+    the wrong debug access level to an internal asset, providing unintended access to the asset from untrusted 
+    debug agents. Debug authorization can have multiple levels of access, defined such that different system internal 
+    assets are accessible based on the current authorized debug level. Other than debugger authentication (e.g., 
+    using passwords or challenges), the authorization can also be based on the system state or boot stage. For 
+    example, full system debug access might only be allowed early in boot after a system reset to ensure that 
+    previous session data is not accessible to the authenticated debugger. If this protection mechanism does not 
+    ensure that internal assets have the correct debug access level during each boot stage or change in system 
+    state, an attacker could obtain sensitive information from the internal asset using a debugger. 
   Threat: "Authentication Abuse"
-  Assertions: |-  
-  Design:  
-  Origin: "CWE MITRE" 
+  WeaknessClassification: ["CWE-1244"]
+  VulnerabilityClassification: [114]
+  Tool: 
+  Assertions: |-
+
+  Design: 
+  Origin: "CWE MITRE"
   Reference: "https://cwe.mitre.org/data/definitions/1244.html"
-  Observed Examples: CVE-2019-18827 After ROM code execution, JTAG access is disabled. But before the ROM code is executed, JTAG access is possible, allowing a user full system access. This allows a user to modify the boot flow and successfully bypass the secure-boot process. 
-  
+  Summary: "Internal Asset Exposed to Unsafe Debug Access Level or State"
+  Language: "Not Language-Specific"
+  Technologies: "Not Technology-Specific"
+  Observed Examples: "CVE-2019-18827 After ROM code execution, JTAG access is disabled. But before the ROM code is executed, JTAG access is possible, allowing a user full system access. This allows a user to modify the boot flow and successfully bypass the secure-boot process."
+
 - ID: 54
-  Summary: "Exposure of Sensitive System Information Due to Uncleared Debug Information"
   Plain: >-
-    The hardware does not fully clear security-sensitive values, such as keys and intermediate values in cryptographic operations, when debug mode is entered.
-    Security sensitive values, keys, intermediate steps of cryptographic operations, etc. are stored in temporary registers in the hardware. If these values are not cleared when debug mode is entered they may be accessed by a debugger allowing sensitive information to be accessible by untrusted parties.   
-  WeaknessClassification: ["CWE-1258"] 
-  Language: "Not Language-Specific"
-  Technologies: "Not Technology-Specific"
-  VulnerabilityClassification: [150, 204, 37, 545]
+    The hardware does not fully clear security-sensitive values, such as keys and intermediate values in cryptographic 
+    operations, when debug mode is entered. Security sensitive values, keys, intermediate steps of cryptographic 
+    operations, etc. are stored in temporary registers in the hardware. If these values are not cleared when debug 
+    mode is entered they may be accessed by a debugger allowing sensitive information to be accessible by untrusted 
+    parties. 
   Threat: "Collect Data from Common Resource Locations, Lifting Sensitive Data Embedded in Cache, Retrieve Embedded Sensitive Data, Pull Data from System Resources"
-  Assertions: |-  
-  Design:  
-  Origin: "CWE MITRE" 
+  WeaknessClassification: ["CWE-1258"]
+  VulnerabilityClassification: [150, 204, 37, 545]
+  Tool: 
+  Assertions: |-
+
+  Design: 
+  Origin: "CWE MITRE"
   Reference: "https://cwe.mitre.org/data/definitions/1258.html"
-  Observed Examples: CVE-2021-33080 Uncleared debug information in memory accelerator for SSD product exposes sensitive system information, CVE-2022-31162 Rust library leaks Oauth client details in application debug logs 
-   
-- ID: 55
-  Summary: "Improper Restriction of Security Token Assignment"
-  Plain: >-
-    The System-On-A-Chip (SoC) implements a Security Token mechanism to differentiate what actions are allowed or disallowed when a transaction originates from an entity. However, the Security Tokens are improperly protected.
-    Systems-On-A-Chip (Integrated circuits and hardware engines) implement Security Tokens to differentiate and identify which actions originated from which agent. These actions may be one of the directives 'read', 'write', 'program', 'reset', 'fetch', 'compute', etc. Security Tokens are assigned to every agent in the System that is capable of generating an action or receiving an action from another agent. Multiple Security Tokens may be assigned to an agent and may be unique based on the agent's trust level or allowed privileges. Since the Security Tokens are integral for the maintenance of security in an SoC, they need to be protected properly. A common weakness afflicting Security Tokens is improperly restricting the assignment to trusted components. Consequently, an improperly protected Security Token may be able to be programmed by a malicious agent (i.e., the Security Token is mutable) to spoof the action as if it originated from a trusted agent. 
-  WeaknessClassification: ["CWE-1259"]   
+  Summary: "Exposure of Sensitive System Information Due to Uncleared Debug Information"
   Language: "Not Language-Specific"
   Technologies: "Not Technology-Specific"
-  VulnerabilityClassification: [121, 681]
+  Observed Examples: "CVE-2021-33080 Uncleared debug information in memory accelerator for SSD product exposes sensitive system information, CVE-2022-31162 Rust library leaks Oauth client details in application debug logs"
+
+- ID: 55
+  Plain: >-
+    The System-On-A-Chip (SoC) implements a Security Token mechanism to differentiate what actions are allowed 
+    or disallowed when a transaction originates from an entity. However, the Security Tokens are improperly protected. 
+    Systems-On-A-Chip (Integrated circuits and hardware engines) implement Security Tokens to differentiate and 
+    identify which actions originated from which agent. These actions may be one of the directives 'read', 'write', 
+    'program', 'reset', 'fetch', 'compute', etc. Security Tokens are assigned to every agent in the System that 
+    is capable of generating an action or receiving an action from another agent. Multiple Security Tokens may 
+    be assigned to an agent and may be unique based on the agent's trust level or allowed privileges. Since the 
+    Security Tokens are integral for the maintenance of security in an SoC, they need to be protected properly. 
+    A common weakness afflicting Security Tokens is improperly restricting the assignment to trusted components. 
+    Consequently, an improperly protected Security Token may be able to be programmed by a malicious agent (i.e., 
+    the Security Token is mutable) to spoof the action as if it originated from a trusted agent. 
   Threat: "Exploit Non-Production Interfaces, Exploitation of Improperly Controlled Hardware Security Identifiers"
-  Assertions: |-  
+  WeaknessClassification: ["CWE-1259"]
+  VulnerabilityClassification: [121, 681]
+  Tool: 
+  Assertions: |-
+
   Design: 
   Origin: "CWE MITRE"
   Reference: "https://cwe.mitre.org/data/definitions/1259.html"
-  Observed Examples:   
-- ID: 56
-  Summary: "Hardware Logic with Insecure De-Synchronization between Control and Data Channels"
-  Plain: >-
-    The hardware logic for error handling and security checks can incorrectly forward data before the security check is complete. Many high-performance on-chip bus protocols and processor data-paths employ separate channels for control and data to increase parallelism and maximize throughput. Bugs in the hardware logic that handle errors and security checks can make it possible for data to be forwarded before the completion of the security checks. If the data can propagate to a location in the hardware observable to an attacker, loss of data confidentiality can occur. 'Meltdown' is a concrete example of how de-synchronization between data and permissions checking logic can violate confidentiality requirements. Data loaded from a page marked as privileged was returned to the cpu regardless of current privilege level for performance reasons. The assumption was that the cpu could later remove all traces of this data during the handling of the illegal memory access exception, but this assumption was proven false as traces of the secret data were not removed from the microarchitectural state.
-  WeaknessClassification: ["CWE-1264"]   
+  Summary: "Improper Restriction of Security Token Assignment"
   Language: "Not Language-Specific"
   Technologies: "Not Technology-Specific"
-  VulnerabilityClassification: [233, 663]
+  Observed Examples: 
+
+- ID: 56
+  Plain: >-
+    The hardware logic for error handling and security checks can incorrectly forward data before the security 
+    check is complete. Many high-performance on-chip bus protocols and processor data-paths employ separate channels 
+    for control and data to increase parallelism and maximize throughput. Bugs in the hardware logic that handle 
+    errors and security checks can make it possible for data to be forwarded before the completion of the security 
+    checks. If the data can propagate to a location in the hardware observable to an attacker, loss of data confidentiality 
+    can occur. 'Meltdown' is a concrete example of how de-synchronization between data and permissions checking 
+    logic can violate confidentiality requirements. Data loaded from a page marked as privileged was returned 
+    to the cpu regardless of current privilege level for performance reasons. The assumption was that the cpu 
+    could later remove all traces of this data during the handling of the illegal memory access exception, but 
+    this assumption was proven false as traces of the secret data were not removed from the microarchitectural 
+    state. 
   Threat: "Privilege Escalation, Exploitation of Transient Instruction Execution"
-  Assertions: |-  
+  WeaknessClassification: ["CWE-1264"]
+  VulnerabilityClassification: [233, 663]
+  Tool: 
+  Assertions: |-
+
   Design: 
   Origin: "CWE MITRE"
   Reference: "https://cwe.mitre.org/data/definitions/1264.html"
-  Observed Examples: CVE-2017-5754
+  Summary: "Hardware Logic with Insecure De-Synchronization between Control and Data Channels"
+  Language: "Not Language-Specific"
+  Technologies: "Not Technology-Specific"
+  Observed Examples: "CVE-2017-5754"
+
