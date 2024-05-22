@@ -1,7 +1,7 @@
 def dump(root:list) -> str:
     def format_text(_val:str, linelen:int=110, indent="  ") -> str:
         """Meant for long plain text"""
-        if _val:
+        if _val and len(_val.strip()):
             _toks = _val.split()
             _cline = indent * 2
             _lines = []
@@ -12,30 +12,38 @@ def dump(root:list) -> str:
                     _lines.append(_cline)
                     _cline = (indent * 2) + _tok + " "
             _lines.append(_cline)
-            return "\n".join(_lines)
+            return "\n".join(_lines) + "\n"
         return ""
     def format_code(_val:str, indent="  ") -> str:
         """Meant for code blocks"""
-        if _val:
+        if _val and len(_val.strip()):
             _lines_orig = _val.split("\n")
             _lines_out = []
             for _line in _lines_orig:
-                _lines_out.append(indent * 2 + _line)
-            return "\n".join(_lines_out)
+                if len(_line.strip()):
+                    _lines_out.append(indent * 2 + _line)
+            _out = "\n".join(_lines_out)
+            if _out[-1] != "\n":
+                _out += "\n"
+            return _out
         return ""
     def format_string(_val:str) -> str:
-        if _val:
+        if _val and len(_val.strip()):
             return f'"{_val}"'
         return ""
     def format_list(_val:list) -> str:
-        out = []
-        if _val:
+        if _val and len(_val):
+            out = []
             for x in _val:
                 if type(x) is str:
-                    out.append(format_string(x))
+                    if len(x.strip()):
+                        out.append(format_string(x))
                 else:
                     out.append(str(x))
-            return f"[{', '.join(out)}]"
+            if len(out):
+                return f"[{', '.join(out)}]"
+            else:
+                return ""
         return ""
     def ifex(record:dict, key:str):
         """Retrieve if exists, else a safe fallback value"""
@@ -57,12 +65,12 @@ def dump(root:list) -> str:
     out = ""
     for record in root:
         out += "- ID: {}\n".format(str(record["ID"]))
-        out += "  Plain: >-\n{}\n".format(format_text(record["Plain"]))
+        out += "  Plain: >-\n{}".format(format_text(record["Plain"]))
         out += "  Threat: {}\n".format(format_string(ifex(record, "Threat")))
         out += "  WeaknessClassification: {}\n".format(format_list(record["WeaknessClassification"]))
         out += "  VulnerabilityClassification: {}\n".format(format_list(record["VulnerabilityClassification"]))
         out += "  Tool: {}\n".format(format_string(ifex(record, "Tool")))
-        out += "  Assertions: |-\n{}\n".format(format_code(record["Assertions"]))
+        out += "  Assertions: |-\n{}".format(format_code(record["Assertions"]))
         out += "  Design: {}\n".format(format_string(record["Design"]))
         out += "  Origin: {}\n".format(format_string(record["Origin"]))
         out += "  Reference: {}\n".format(format_string(record["Reference"]))

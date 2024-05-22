@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from sys import argv
 from explore import load_validate
+from custom_dump import dump
 
 # Fields: 
 #   Plain -> plain
@@ -13,6 +14,26 @@ from explore import load_validate
 #   Design -> design
 #   Origin -> origin
 #   Reference -> reference
+
+def list_the_unexpected(record:dict) -> dict:
+    unex = {}
+    # The expected: 
+    if "plain" in record:
+        assert "Plain" not in record
+        _ex = ["plain", "threat", "weakclass", "vulnclass", 
+            "tool", "assertions", "design", "origin", 
+            "reference"]
+    elif "Plain" in record:
+        assert "plain" not in record
+        _ex = ["ID", "Plain", "Threat", "WeaknessClassification", 
+            "VulnerabilityClassification", "Tool", "Assertions", 
+            "Design", "Origin", "Reference"]
+    else:
+        assert False
+    for key in record:
+        if not key in _ex:
+            unex[key] = record[key]
+    return unex
 
 def unpack_data(data:list) -> tuple:
     """Returns a (list,dict) pair containing sorted list of IDs and the ID -> record dict"""
@@ -32,6 +53,9 @@ def unpack_data(data:list) -> tuple:
             "origin": record["Origin"] if record["Origin"] else " ",
             "reference": record["Reference"] if record["Reference"] else " "
         }
+        unex = list_the_unexpected(record)
+        for key in unex:
+            unpacked[ID][key] = unex[key]
         #print(f"{ID}: {unpacked[ID]['weakclass']}")
     ids.sort()
     return ids, unpacked
@@ -40,15 +64,43 @@ def pack_data(ids:list, unpacked:dict) -> list:
     """Gets the id list and the unpacked data and returns a packed dict, ready to be custom-dumped"""
     packed = []
     for id in ids:
-        packed.append({**{"ID": id}, **unpacked[id]})
+        record = {
+            "ID": id, 
+            "Plain": unpacked[id]["plain"], 
+            "Threat": unpacked[id]["threat"], 
+            "WeaknessClassification": unpacked[id]["weakclass"], 
+            "VulnerabilityClassification": unpacked[id]["vulnclass"], 
+            "Tool": unpacked[id]["tool"], 
+            "Assertions": unpacked[id]["assertions"], 
+            "Design": unpacked[id]["design"], 
+            "Origin": unpacked[id]["origin"], 
+            "Reference": unpacked[id]["reference"]
+        }
+        unex = list_the_unexpected(unpacked[id])
+        for key in unex:
+            record[key] = unex[key]
+        #record = {**{"ID": id}, **unpacked[id]}
+        packed.append(record)
     return packed
+
+def extract_list_from_text(text:str) -> list:
+    toks = text.split(",")
+    out = []
+    if toks[0].strip().isnumeric():
+        for x in toks:
+            out.append(int(x.strip()))
+    else:
+        for x in toks:
+            out.append(x.strip())
+    return out
 
 if __name__ == "__main__":
     if len(argv) != 2:
         print("Usage: python " + argv[0] + " <source.yaml>")
         exit(1)
     
-    data = load_validate(argv[1])
+    source_file = argv[1]
+    data = load_validate(source_file)
     ids, data = unpack_data(data)
     currentid_index = 0
 
@@ -158,8 +210,33 @@ if __name__ == "__main__":
             display_record()
 
     def onclick_save():
-        _outpath = "TMP.yaml"
-        set_text_value(txtreference, "Save")
+        # Expected behavior: If the user uses an unused ID, it will be dealt with as a new record in the dataset. 
+        ID = int(txtid.get())
+        datalen = len(data)
+        newrecord = {
+            "plain": txtplain.get("1.0", tk.END), 
+            "threat": txtthreat.get(), 
+            "weakclass": extract_list_from_text(txtweakclass.get()), 
+            "vulnclass": extract_list_from_text(txtvulnclass.get()),  
+            "tool": txttool.get(), 
+            "assertions": txtassertions.get("1.0", tk.END), 
+            "design": txtdesign.get(), 
+            "origin": txtorigin.get(), 
+            "reference": txtreference.get()
+        }
+        if ID in data:
+            unex = list_the_unexpected(data[ID])
+            for key in unex:
+                newrecord[key] = unex[key]
+        else:
+            ids.append(ID)
+            ids.sort()
+        data[ID] = newrecord
+        packed = pack_data(ids, data)
+        with open(source_file, "w") as fout:
+            fout.write(dump(packed))
+        datalen = len(data) - datalen
+        messagebox.showinfo(message=f"Successfully updated the dataset. {datalen if datalen else 'No'} new record added. ")
 
     frmbuttons = tk.Frame()
     btnprev = tk.Button(frmbuttons, text="<", command=onclick_prev)
