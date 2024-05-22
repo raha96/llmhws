@@ -12,6 +12,7 @@ This repository is meant to host a dataset of potential hardware vulnerabilites 
 
 # News
 A simple GUI has been added to simplify browsing the dataset and adding records. It can be executed via: 
+
 `python tools/dbgui.py source.yaml`
 
 ![GUI screenshot](docs/gui.png)
