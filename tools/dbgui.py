@@ -3,6 +3,7 @@ from tkinter import messagebox
 from sys import argv
 from explore import load_validate
 from custom_dump import dump
+from idlelib.tooltip import Hovertip
 
 # Fields: 
 #   Plain -> plain
@@ -114,6 +115,7 @@ if __name__ == "__main__":
     txtid = tk.Entry()
     lblid.grid(row=0, column=0, sticky="e", padx=2, pady=2)
     txtid.grid(row=0, column=1, sticky="news", padx=2, pady=2, columnspan=2)
+    tipid = Hovertip(txtid, "Unique record ID")
 
     lblplain = tk.Label(text="Plain text vulnerability: ")
     txtplain = tk.Text()
@@ -122,26 +124,31 @@ if __name__ == "__main__":
     lblplain.grid(row=1, column=0, sticky="ne", padx=2, pady=2)
     txtplain.grid(row=1, column=1, sticky="news", padx=2, pady=2)
     sclplain.grid(row=1, column=2, sticky="news", padx=2, pady=2)
+    tipplain = Hovertip(txtplain, "Plain text description of the security vulnerability")
 
     lblthreat = tk.Label(text="Threat: ")
     txtthreat = tk.Entry()
     lblthreat.grid(row=2, column=0, sticky="e", padx=2, pady=2)
     txtthreat.grid(row=2, column=1, sticky="news", padx=2, pady=2, columnspan=2)
+    tipthreat = Hovertip(txtthreat, "Threat model description")
 
     lblweakclass = tk.Label(text="Weakness classification: ")
     txtweakclass = tk.Entry()
     lblweakclass.grid(row=3, column=0, sticky="e", padx=2, pady=2)
     txtweakclass.grid(row=3, column=1, sticky="news", padx=2, pady=2, columnspan=2)
+    tipweakclass = Hovertip(txtweakclass, "e.g. CWE classification")
 
     lblvulnclass = tk.Label(text="Vulnerability classification: ")
     txtvulnclass = tk.Entry()
     lblvulnclass.grid(row=4, column=0, sticky="e", padx=2, pady=2)
     txtvulnclass.grid(row=4, column=1, sticky="news", padx=2, pady=2, columnspan=2)
+    tipvulnclass = Hovertip(txtvulnclass, "e.g. CAPEC classification")
 
     lbltool = tk.Label(text="Tool: ")
     txttool = tk.Entry()
     lbltool.grid(row=5, column=0, sticky="e", padx=2, pady=2)
     txttool.grid(row=5, column=1, sticky="news", padx=2, pady=2, columnspan=2)
+    tiptool = Hovertip(txttool, "The software tool needed for verifying the assertions, e.g. Cadence JasperGold")
 
     lblassertions = tk.Label(text="Assertions: ")
     txtassertions = tk.Text()
@@ -150,21 +157,25 @@ if __name__ == "__main__":
     lblassertions.grid(row=6, column=0, sticky="ne", padx=2, pady=2)
     txtassertions.grid(row=6, column=1, sticky="news", padx=2, pady=2)
     sclassertions.grid(row=6, column=2, sticky="news", padx=2, pady=2)
+    tipassertions = Hovertip(txtassertions, "Security assertions for verifying the code against this vulnerability (e.g. SV assertions)")
 
     lbldesign = tk.Label(text="Design: ")
     txtdesign = tk.Entry()
     lbldesign.grid(row=7, column=0, sticky="e", padx=2, pady=2)
     txtdesign.grid(row=7, column=1, sticky="news", padx=2, pady=2, columnspan=2)
+    tipdesign = Hovertip(txtdesign, "Design name or path. In case the design is available in this repo, use the format `PATH:` + relative path")
 
     lblorigin = tk.Label(text="Origin: ")
     txtorigin = tk.Entry()
     lblorigin.grid(row=8, column=0, sticky="e", padx=2, pady=2)
     txtorigin.grid(row=8, column=1, sticky="news", padx=2, pady=2, columnspan=2)
+    tiporigin = Hovertip(txtorigin, "Reference to the original data source (e.g. paper or database)")
 
     lblreference = tk.Label(text="Reference: ")
     txtreference = tk.Entry()
     lblreference.grid(row=9, column=0, sticky="e", padx=2, pady=2)
     txtreference.grid(row=9, column=1, sticky="news", padx=2, pady=2, columnspan=2)
+    tipreference = Hovertip(txtreference, "Reference to the vulnerability or weakness (e.g. URL)")
 
     def set_text_value(textbox, value:str):
         if type(textbox) is tk.Entry:
