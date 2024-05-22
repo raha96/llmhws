@@ -14,27 +14,34 @@ from explore import load_validate
 #   Origin -> origin
 #   Reference -> reference
 
-def reframe_data(data:list) -> tuple:
+def unpack_data(data:list) -> tuple:
     """Returns a (list,dict) pair containing sorted list of IDs and the ID -> record dict"""
-    reframed = {}
+    unpacked = {}
     ids = []
     for record in data:
         ID = record["ID"]
         ids.append(ID)
-        reframed[ID] = {
+        unpacked[ID] = {
             "plain": record["Plain"],
-            "threat": record["Threat"],
+            "threat": record["Threat"] if record["Threat"] else " ",
             "weakclass": record["WeaknessClassification"] if record["WeaknessClassification"] else [" "],
             "vulnclass": record["VulnerabilityClassification"] if record["VulnerabilityClassification"] else [" "],
-            "tool": record["Tool"] if "Tool" in record else " ",
+            "tool": record["Tool"] if ("Tool" in record and record["Tool"]) else " ",
             "assertions": record["Assertions"] if record["Assertions"] else " ",
             "design": record["Design"] if record["Design"] else " ",
             "origin": record["Origin"] if record["Origin"] else " ",
             "reference": record["Reference"] if record["Reference"] else " "
         }
-        #print(f"{ID}: {reframed[ID]['weakclass']}")
+        #print(f"{ID}: {unpacked[ID]['weakclass']}")
     ids.sort()
-    return ids, reframed
+    return ids, unpacked
+
+def pack_data(ids:list, unpacked:dict) -> list:
+    """Gets the id list and the unpacked data and returns a packed dict, ready to be custom-dumped"""
+    packed = []
+    for id in ids:
+        packed.append({**{"ID": id}, **unpacked[id]})
+    return packed
 
 if __name__ == "__main__":
     if len(argv) != 2:
@@ -42,7 +49,7 @@ if __name__ == "__main__":
         exit(1)
     
     data = load_validate(argv[1])
-    ids, data = reframe_data(data)
+    ids, data = unpack_data(data)
     currentid_index = 0
 
     window = tk.Tk()
@@ -151,6 +158,7 @@ if __name__ == "__main__":
             display_record()
 
     def onclick_save():
+        _outpath = "TMP.yaml"
         set_text_value(txtreference, "Save")
 
     frmbuttons = tk.Frame()
